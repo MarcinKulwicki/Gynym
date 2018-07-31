@@ -14,6 +14,8 @@ import pl.coderslab.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.Comparator;
+import java.util.List;
 
 @Controller
 @RequestMapping("/body")
@@ -28,12 +30,15 @@ public class BodyController {
 
     @GetMapping("")
     public String list(Model model, HttpServletRequest request){
-        model.addAttribute("body", bodyRepository.findAllByUser_Id(userService.getUserIdFromSession(request)));
+        //BENG!
+        List<Body> body = bodyRepository.findAllByUser_Id(userService.getUserIdFromSession(request));
+        body.sort(Comparator.comparing(Body::getData_mod));
+        model.addAttribute("body", body);
         return "body/list";
     }
     @GetMapping("/add")
-    public String add(Model model){
-        model.addAttribute("body", new Body());
+    public String add(Model model, HttpServletRequest request){
+        model.addAttribute("body", bodyService.getNewBodyOrLatest(request));
         return "body/form";
     }
     @PostMapping("/add")
@@ -44,8 +49,8 @@ public class BodyController {
         return "redirect:/body";
     }
     @GetMapping("/target")
-    public String target(Model model){
-        model.addAttribute("body", new Body());
+    public String target(Model model, HttpServletRequest request){
+        model.addAttribute("body", bodyService.getNewTargetOrLatest(request));
         return "body/form";
     }
     @PostMapping("/target")

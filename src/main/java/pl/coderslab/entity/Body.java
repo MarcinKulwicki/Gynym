@@ -52,6 +52,7 @@ public class Body {
 
 
     public Body(){
+        flag = "stat";
 
     }
 
@@ -165,5 +166,14 @@ public class Body {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public Timestamp getData_mod() {
+        return data_mod;
+    }
+
+    @Override
+    public String toString() {
+        return data_mod.toLocalDateTime().getYear()+":"+data_mod.toLocalDateTime().getMonth()+":"+data_mod.toLocalDateTime().getDayOfMonth();
     }
 }

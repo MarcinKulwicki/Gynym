@@ -3,6 +3,7 @@ package pl.coderslab.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import pl.coderslab.entity.Body;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.BodyRepository;
 
 import javax.servlet.http.HttpServletRequest;
@@ -49,5 +50,19 @@ public class BodyService {
             return true;
         }
         return false;
+    }
+    public Body getNewTargetOrLatest(HttpServletRequest request){
+            User user = userService.getUserFromSession(request);
+            Body bodyInDb = bodyRepository.findFirstByUser_IdAndFlagLikeTarget(user.getId());
+            if(bodyInDb == null) return new Body();
+        return bodyInDb;
+    }
+
+    public Body getNewBodyOrLatest(HttpServletRequest request){
+        User user = userService.getUserFromSession(request);
+        Body body;
+        body = bodyRepository.findByUser_IdOrderByData_mod(user.getId());
+        if(body == null) return new Body();
+        return body;
     }
 }

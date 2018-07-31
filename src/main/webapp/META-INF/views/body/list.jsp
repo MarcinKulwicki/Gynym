@@ -25,28 +25,52 @@
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item">
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
-            </li>
         </ul>
     </div>
     <div class="card-body">
-        <c:forEach items="${body}" var="tmp">
+
             <h5 class="card-title">
-                Height: ${tmp.hight} cm
-                Weight: ${tmp.weight} kg
-                Biceps Left: ${tmp.bicepsLeft} cm
-                Biceps Right: ${tmp.bicepsRight} cm
-                Chest: ${tmp.chest} cm
-                Waist: ${tmp.waist} cm
-                Hips: ${tmp.hips} cm
-                Thigh Left: ${tmp.thighLeft} cm
-                Thigh Right: ${tmp.thighRight} cm
-                Calf Left: ${tmp.calfLeft} cm
-                Calf Right: ${tmp.calfRight}cm
+                <table class="table table-sm">
+                    <thead>
+                    <tr>
+                        <th scope="col">Date</th>
+                        <th scope="col">Height [cm]</th>
+                        <th scope="col">Weight [kg]</th>
+                        <th scope="col">Biceps Left [cm]</th>
+                        <th scope="col">Biceps Right [cm]</th>
+                        <th scope="col">Chest [cm]</th>
+                        <th scope="col">Waist [cm]</th>
+                        <th scope="col">Hips [cm]</th>
+                        <th scope="col">Thigh Left [cm]</th>
+                        <th scope="col">Thigh Right [cm]</th>
+                        <th scope="col">Calf Left [cm]</th>
+                        <th scope="col">Calf Right [cm]</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <c:forEach items="${body}" var="tmp">
+                    <tr>
+                        <td>${tmp.flag} ${tmp}</td>
+                        <td>${tmp.hight}</td>
+                        <td>${tmp.weight}</td>
+                        <td>${tmp.bicepsLeft}</td>
+                        <td>${tmp.bicepsRight}</td>
+                        <td>${tmp.chest}</td>
+                        <td>${tmp.waist}</td>
+                        <td>${tmp.hips}</td>
+                        <td>${tmp.thighLeft}</td>
+                        <td>${tmp.thighRight}</td>
+                        <td>${tmp.calfLeft}</td>
+                        <td>${tmp.calfRight}</td>
+                    </tr>
+                    </c:forEach>
+                    </tbody>
+                </table>
+
             </h5>
-        </c:forEach>
+
     </div>
 </div>
 
