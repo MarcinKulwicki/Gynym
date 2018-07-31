@@ -35,4 +35,15 @@ public class TrainingService {
         training.setUser((User)sess.getAttribute("UserLogged"));
         trainingRepository.save(training);
     }
+
+    public void addTrainingToSession(Long id, HttpServletRequest request){
+        sess = request.getSession();
+        sess.setAttribute("trainingId", id);
+    }
+    public Long getTrainingIdFromSession(HttpServletRequest request){
+        sess = request.getSession();
+        Long tmp = (Long) sess.getAttribute("trainingId");
+        if(tmp == null) return 0L;
+        return tmp;
+    }
 }
