@@ -25,6 +25,10 @@ public class Exercise {
     @Version
     Long idv;
 
+
+    @ManyToOne
+    private Training training;
+
     @NotBlank
     @NotNull
     private String name;
@@ -33,8 +37,9 @@ public class Exercise {
 
     private String recommend;
 
-    @ManyToOne
-    private Training training;
+    private Long series;
+    private Long repeats;
+    private Long weight;
 
 
     public Exercise(){
@@ -80,5 +85,29 @@ public class Exercise {
 
     public void setTraining(Training training) {
         this.training = training;
+    }
+
+    public Long getSeries() {
+        return series;
+    }
+
+    public void setSeries(Long series) {
+        this.series = series;
+    }
+
+    public Long getRepeats() {
+        return repeats;
+    }
+
+    public void setRepeats(Long repeats) {
+        this.repeats = repeats;
+    }
+
+    public Long getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
     }
 }

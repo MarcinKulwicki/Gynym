@@ -1,3 +1,4 @@
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: wdr434
@@ -8,9 +9,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>$Title$</title>
+    <title>Training Form</title>
 </head>
 <body>
-$END$
+
+<form:form method="post" modelAttribute="training">
+    <form:input path="name"/>
+    <input type="submit" value="Add training">
+</form:form>
+
 </body>
 </html>

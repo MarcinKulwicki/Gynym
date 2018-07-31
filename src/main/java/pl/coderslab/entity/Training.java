@@ -2,8 +2,10 @@ package pl.coderslab.entity;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -23,9 +25,10 @@ public class Training {
     @Version
     Long idv;
 
-    private Long series;
-    private Long repeats;
-    private Long weight;
+    @NotNull
+    @NotBlank
+    private String name;
+
 
     @ManyToOne
     private User user;
@@ -38,36 +41,21 @@ public class Training {
 
     }
 
+    @NotNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NotNull String name) {
+        this.name = name;
+    }
+
     public Long getId() {
         return id;
     }
 
     public void setId(Long id) {
         this.id = id;
-    }
-
-    public Long getSeries() {
-        return series;
-    }
-
-    public void setSeries(Long series) {
-        this.series = series;
-    }
-
-    public Long getRepeats() {
-        return repeats;
-    }
-
-    public void setRepeats(Long repeats) {
-        this.repeats = repeats;
-    }
-
-    public Long getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
     }
 
     public User getUser() {
