@@ -43,7 +43,7 @@ public class UserService {
 
     public boolean editUserInDb(User user){
         User userInDb = userRepository.findFirstByUsername(user.getUsername());
-        if(userInDb.getEmail() == user.getEmail()){
+        if(userInDb.getEmail().equals(user.getEmail())){
             String password = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
             userInDb.setPassword(password);
             userRepository.save(userInDb);
