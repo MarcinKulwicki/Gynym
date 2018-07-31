@@ -44,11 +44,8 @@ public class User {
 
     //Profil uzytkownika
     //TODO Validate profil?? inpossible i think
-    @OneToOne(mappedBy = "user")
-    private Body body;
-
-    @OneToOne(mappedBy = "user")
-    private ProfilProgress profilProgress;
+    @OneToMany(mappedBy = "user")
+    private List<Body> bodies;
 
     @OneToMany(mappedBy = "user")
     private List<Training> trainings;
@@ -92,4 +89,19 @@ public class User {
         this.password = password;
     }
 
+    public List<Body> getBodies() {
+        return bodies;
+    }
+
+    public void setBodies(List<Body> bodies) {
+        this.bodies = bodies;
+    }
+
+    public List<Training> getTrainings() {
+        return trainings;
+    }
+
+    public void setTrainings(List<Training> trainings) {
+        this.trainings = trainings;
+    }
 }
