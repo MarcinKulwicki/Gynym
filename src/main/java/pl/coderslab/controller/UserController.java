@@ -27,13 +27,14 @@ public class UserController {
     UserService userService;
 
     @GetMapping("")
-    public String login(){
+    public String loginGet(HttpServletRequest request){
+        if(userService.getUserFromSession(request) != null) return "redirect:/body";
         return "user/login";
     }
     @PostMapping("")
     public String login(HttpServletRequest request){
         if(userService.logIn(request)){
-            return "redirect:/training";
+            return "redirect:/body";
         }
         return "redirect:/user";
     }

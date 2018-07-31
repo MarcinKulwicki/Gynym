@@ -3,11 +3,11 @@
   Created by IntelliJ IDEA.
   User: wdr434
   Date: 31.07.18
-  Time: 12:28
+  Time: 18:58
   To change this template use File | Settings | File Templates.
 --%>
-<!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -17,45 +17,38 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
-    <title>Exercise</title>
+    <title>List Body</title>
 </head>
 <body>
 <c:import url="../fragments/header.jsp"/>
-
 
 <div class="card text-center">
     <div class="card-header">
         <ul class="nav nav-pills card-header-pills">
             <li class="nav-item">
-                <a class="nav-link disabled" href="${pageContext.request.contextPath}/exercise/add">Add Exercise</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
             </li>
         </ul>
     </div>
     <div class="card-body">
-        <c:if test="${noTraining}">
-        <h5 class="card-title">
-                You don't chose any traning, back to the Training Tab and Chose trening
-        </h5>
-        </c:if>
-        <c:forEach items="${exercise}" var="tmp">
-                    <h5 class="card-title">
-                    Exercise:
-                    ${tmp.id}
-                    ${tmp.name}
-                    ${tmp.description}
-                    ${tmp.recommend}
-                    ${tmp.series}
-                    ${tmp.repeats}
-                    ${tmp.weight}
-                    </h5>
+        <c:forEach items="${body}" var="tmp">
+            <h5 class="card-title">
+                Height: ${tmp.hight} cm
+                Weight: ${tmp.weight} kg
+                Biceps Left: ${tmp.bicepsLeft} cm
+                Biceps Right: ${tmp.bicepsRight} cm
+                Chest: ${tmp.chest} cm
+                Waist: ${tmp.waist} cm
+                Hips: ${tmp.hips} cm
+                Thigh Left: ${tmp.thighLeft} cm
+                Thigh Right: ${tmp.thighRight} cm
+                Calf Left: ${tmp.calfLeft} cm
+                Calf Right: ${tmp.calfRight}cm
+            </h5>
         </c:forEach>
     </div>
 </div>
-
-
-
-
-
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
