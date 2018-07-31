@@ -1,18 +1,34 @@
 package pl.coderslab.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
 public class User {
 
+
+    //Niezalezne ID
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Kontrola Bazy danych
+    @CreationTimestamp
+    Timestamp data_add;
+    @UpdateTimestamp
+    Timestamp data_mod;
+    @Version
+    Long idv;
+
+
+    //Identyfikacja uzytkownika do logowania
     @Column(unique = true)
     @NotNull
     @NotBlank
@@ -26,8 +42,16 @@ public class User {
     @NotNull
     private String password;
 
+    //Profil uzytkownika
+    //TODO Validate profil?? inpossible i think
     @OneToOne(mappedBy = "user")
-    private Profil profil;
+    private Body body;
+
+    @OneToOne(mappedBy = "user")
+    private ProfilProgress profilProgress;
+
+    @OneToMany(mappedBy = "user")
+    private List<Training> trainings;
 
     public User(){
 
@@ -68,11 +92,4 @@ public class User {
         this.password = password;
     }
 
-    public Profil getProfil() {
-        return profil;
-    }
-
-    public void setProfil(Profil profil) {
-        this.profil = profil;
-    }
 }

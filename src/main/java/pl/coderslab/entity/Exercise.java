@@ -1,10 +1,13 @@
 package pl.coderslab.entity;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.validator.constraints.NotBlank;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "exercise")
@@ -14,6 +17,18 @@ public class Exercise {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Kontrola Bazy danych
+    @CreationTimestamp
+    Timestamp data_add;
+    @UpdateTimestamp
+    Timestamp data_mod;
+    @Version
+    Long idv;
+
+
+    @ManyToOne
+    private Training training;
+
     @NotBlank
     @NotNull
     private String name;
@@ -22,8 +37,9 @@ public class Exercise {
 
     private String recommend;
 
-    @ManyToOne
-    private ExerciseBox exerciseBox;
+    private Long series;
+    private Long repeats;
+    private Long weight;
 
 
     public Exercise(){
@@ -63,11 +79,35 @@ public class Exercise {
         this.recommend = recommend;
     }
 
-    public ExerciseBox getExerciseBox() {
-        return exerciseBox;
+    public Training getTraining() {
+        return training;
     }
 
-    public void setExerciseBox(ExerciseBox exerciseBox) {
-        this.exerciseBox = exerciseBox;
+    public void setTraining(Training training) {
+        this.training = training;
+    }
+
+    public Long getSeries() {
+        return series;
+    }
+
+    public void setSeries(Long series) {
+        this.series = series;
+    }
+
+    public Long getRepeats() {
+        return repeats;
+    }
+
+    public void setRepeats(Long repeats) {
+        this.repeats = repeats;
+    }
+
+    public Long getWeight() {
+        return weight;
+    }
+
+    public void setWeight(Long weight) {
+        this.weight = weight;
     }
 }

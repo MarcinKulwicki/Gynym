@@ -1,6 +1,12 @@
 package pl.coderslab.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -11,19 +17,37 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Long series;
-    private Long repeats;
-    private Long weight;
+    //Kontrola Bazy danych
+    @CreationTimestamp
+    Timestamp data_add;
+    @UpdateTimestamp
+    Timestamp data_mod;
+    @Version
+    Long idv;
+
+    @NotNull
+    @NotBlank
+    private String name;
+
 
     @ManyToOne
-    Profil profil;
+    private User user;
 
     @OneToMany(mappedBy = "training")
-    List<ExerciseBox> exerciseBoxes;
+    private List<Exercise> exercises;
 
 
     public Training(){
 
+    }
+
+    @NotNull
+    public String getName() {
+        return name;
+    }
+
+    public void setName(@NotNull String name) {
+        this.name = name;
     }
 
     public Long getId() {
@@ -34,43 +58,19 @@ public class Training {
         this.id = id;
     }
 
-    public Long getSeries() {
-        return series;
+    public User getUser() {
+        return user;
     }
 
-    public void setSeries(Long series) {
-        this.series = series;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Long getRepeats() {
-        return repeats;
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setRepeats(Long repeats) {
-        this.repeats = repeats;
-    }
-
-    public Long getWeight() {
-        return weight;
-    }
-
-    public void setWeight(Long weight) {
-        this.weight = weight;
-    }
-
-    public Profil getProfil() {
-        return profil;
-    }
-
-    public void setProfil(Profil profil) {
-        this.profil = profil;
-    }
-
-    public List<ExerciseBox> getExerciseBoxes() {
-        return exerciseBoxes;
-    }
-
-    public void setExerciseBoxes(List<ExerciseBox> exerciseBoxes) {
-        this.exerciseBoxes = exerciseBoxes;
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }

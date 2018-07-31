@@ -1,7 +1,12 @@
 package pl.coderslab.entity;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -12,6 +17,21 @@ public class Body {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Kontrola Bazy danych
+    @CreationTimestamp
+    Timestamp data_add;
+    @UpdateTimestamp
+    Timestamp data_mod;
+    @Version
+    Long idv;
+
+
+    @OneToOne
+    private User user;
+    @ManyToOne
+    private ProfilProgress profilProgress;
+
+
     private Long weight;
     private Long hight;
 
@@ -21,18 +41,13 @@ public class Body {
     private Long thigh;
     private Long calf;
 
-    @OneToOne
-    private Profil profil;
+    private LocalDateTime dateBody;
 
-    @OneToMany(mappedBy = "")
-    private List<ProfilProgress> profilProgresses;
+    // 'now' - actual body
+    // 'start' - start body
+    // 'target' - target body
+    private String flag;
 
-    @OneToOne(mappedBy = "bodyNow")
-    private ProfilProgress profilProgressNow;
-    @OneToOne(mappedBy = "bodyStart")
-    private ProfilProgress profilProgressStart;
-    @OneToOne(mappedBy = "bodyTarget")
-    private ProfilProgress profilProgressTarget;
 
 
     public Body(){
@@ -45,6 +60,22 @@ public class Body {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public ProfilProgress getProfilProgress() {
+        return profilProgress;
+    }
+
+    public void setProfilProgress(ProfilProgress profilProgress) {
+        this.profilProgress = profilProgress;
     }
 
     public Long getWeight() {
@@ -103,43 +134,19 @@ public class Body {
         this.calf = calf;
     }
 
-    public Profil getProfil() {
-        return profil;
+    public LocalDateTime getDateBody() {
+        return dateBody;
     }
 
-    public void setProfil(Profil profil) {
-        this.profil = profil;
+    public void setDateBody(LocalDateTime dateBody) {
+        this.dateBody = dateBody;
     }
 
-    public List<ProfilProgress> getProfilProgresses() {
-        return profilProgresses;
+    public String getFlag() {
+        return flag;
     }
 
-    public void setProfilProgresses(List<ProfilProgress> profilProgresses) {
-        this.profilProgresses = profilProgresses;
-    }
-
-    public ProfilProgress getProfilProgressNow() {
-        return profilProgressNow;
-    }
-
-    public void setProfilProgressNow(ProfilProgress profilProgressNow) {
-        this.profilProgressNow = profilProgressNow;
-    }
-
-    public ProfilProgress getProfilProgressStart() {
-        return profilProgressStart;
-    }
-
-    public void setProfilProgressStart(ProfilProgress profilProgressStart) {
-        this.profilProgressStart = profilProgressStart;
-    }
-
-    public ProfilProgress getProfilProgressTarget() {
-        return profilProgressTarget;
-    }
-
-    public void setProfilProgressTarget(ProfilProgress profilProgressTarget) {
-        this.profilProgressTarget = profilProgressTarget;
+    public void setFlag(String flag) {
+        this.flag = flag;
     }
 }
