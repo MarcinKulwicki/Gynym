@@ -12,7 +12,7 @@
     <title>Training List</title>
 </head>
 <body>
-
+<c:import url="../fragments/header.jsp"/>
 
 <c:forEach items="${training}" var="tmp">
     Training:

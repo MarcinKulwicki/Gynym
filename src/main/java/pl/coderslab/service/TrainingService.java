@@ -23,10 +23,14 @@ public class TrainingService {
     TrainingRepository trainingRepository;
 
     public List<Training> getTrainingListForUserInSession(HttpServletRequest request){
-        List<Training> trainings = new ArrayList<>();
+        List<Training> trainings;
         sess = request.getSession();
         User user = (User) sess.getAttribute("UserLogged");
-        trainings = trainingRepository.findAllByUser_Id(user.getId());
+        if(user!= null){
+            trainings = trainingRepository.findAllByUser_Id(user.getId());
+            return trainings;
+        }
+        trainings = new ArrayList<>();
         return trainings;
     }
 

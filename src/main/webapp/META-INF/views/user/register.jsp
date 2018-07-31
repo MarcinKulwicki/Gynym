@@ -1,4 +1,5 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wdr434
@@ -20,6 +21,7 @@
     <title>Register</title>
 </head>
 <body>
+<c:import url="../fragments/header.jsp"/>
 
 
 <div class="card text-center" style="width: 18rem;">

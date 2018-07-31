@@ -33,7 +33,7 @@ public class UserController {
     @PostMapping("")
     public String login(HttpServletRequest request){
         if(userService.logIn(request)){
-            return "redirect:/profil";
+            return "redirect:/training";
         }
         return "redirect:/user";
     }
