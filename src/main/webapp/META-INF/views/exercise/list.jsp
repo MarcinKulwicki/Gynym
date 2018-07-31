@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wdr434
@@ -11,6 +12,18 @@
     <title>Title</title>
 </head>
 <body>
+
+<c:forEach items="${exercise}" var="tmp">
+    Exercise:
+    ${tmp.id}
+    ${tmp.name}
+    ${tmp.description}
+    ${tmp.recommend}
+    ${tmp.series}
+    ${tmp.repeats}
+    ${tmp.weight}
+</c:forEach>
+
 
 </body>
 </html>

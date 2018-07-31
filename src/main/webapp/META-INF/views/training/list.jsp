@@ -18,7 +18,7 @@
     Training:
     ${tmp.id}
     ${tmp.name}
-    <a href="${pageContext.request.contextPath}/training/${tmp.id}">Exercises</a>
+    <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">Exercises</a>
     <br/>
 </c:forEach>
 </body>

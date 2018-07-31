@@ -38,6 +38,7 @@ public class TrainingService {
 
     public void addTrainingToSession(Long id, HttpServletRequest request){
         sess = request.getSession();
+
         sess.setAttribute("trainingId", id);
     }
     public Long getTrainingIdFromSession(HttpServletRequest request){
