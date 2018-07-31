@@ -1,8 +1,13 @@
 package pl.coderslab.entity;
 
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "profil_progress")
@@ -12,21 +17,23 @@ public class ProfilProgress {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private LocalDateTime localDateTime;
+    //Kontrola Bazy danych
+    @CreationTimestamp
+    Timestamp data_add;
+    @UpdateTimestamp
+    Timestamp data_mod;
+    @Version
+    Long idv;
+
 
     @OneToOne
-    private Profil profil;
+    private User user;
 
-    @OneToOne
-    private Body bodyNow;
-    @OneToOne
-    private Body bodyStart;
-    @OneToOne
-    private Body bodyTarget;
-
+    @OneToMany(mappedBy = "profilProgress")
+    private List<Body> bodies;
 
     public ProfilProgress(){
-        this.localDateTime = LocalDateTime.now();
+
     }
 
     public Long getId() {
@@ -37,43 +44,19 @@ public class ProfilProgress {
         this.id = id;
     }
 
-    public LocalDateTime getLocalDateTime() {
-        return localDateTime;
+    public User getUser() {
+        return user;
     }
 
-    public void setLocalDateTime(LocalDateTime localDateTime) {
-        this.localDateTime = localDateTime;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Profil getProfil() {
-        return profil;
+    public List<Body> getBodies() {
+        return bodies;
     }
 
-    public void setProfil(Profil profil) {
-        this.profil = profil;
-    }
-
-    public Body getBodyNow() {
-        return bodyNow;
-    }
-
-    public void setBodyNow(Body bodyNow) {
-        this.bodyNow = bodyNow;
-    }
-
-    public Body getBodyStart() {
-        return bodyStart;
-    }
-
-    public void setBodyStart(Body bodyStart) {
-        this.bodyStart = bodyStart;
-    }
-
-    public Body getBodyTarget() {
-        return bodyTarget;
-    }
-
-    public void setBodyTarget(Body bodyTarget) {
-        this.bodyTarget = bodyTarget;
+    public void setBodies(List<Body> bodies) {
+        this.bodies = bodies;
     }
 }

@@ -1,0 +1,13 @@
+package pl.coderslab.controller;
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class ExerciseController {
+
+
+    @Autowired
+    ExerciseController exerciseController;
+}

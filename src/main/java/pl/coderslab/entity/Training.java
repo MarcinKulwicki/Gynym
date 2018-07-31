@@ -1,6 +1,10 @@
 package pl.coderslab.entity;
 
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -11,15 +15,23 @@ public class Training {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //Kontrola Bazy danych
+    @CreationTimestamp
+    Timestamp data_add;
+    @UpdateTimestamp
+    Timestamp data_mod;
+    @Version
+    Long idv;
+
     private Long series;
     private Long repeats;
     private Long weight;
 
     @ManyToOne
-    Profil profil;
+    private User user;
 
     @OneToMany(mappedBy = "training")
-    List<ExerciseBox> exerciseBoxes;
+    private List<Exercise> exercises;
 
 
     public Training(){
@@ -58,19 +70,19 @@ public class Training {
         this.weight = weight;
     }
 
-    public Profil getProfil() {
-        return profil;
+    public User getUser() {
+        return user;
     }
 
-    public void setProfil(Profil profil) {
-        this.profil = profil;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public List<ExerciseBox> getExerciseBoxes() {
-        return exerciseBoxes;
+    public List<Exercise> getExercises() {
+        return exercises;
     }
 
-    public void setExerciseBoxes(List<ExerciseBox> exerciseBoxes) {
-        this.exerciseBoxes = exerciseBoxes;
+    public void setExercises(List<Exercise> exercises) {
+        this.exercises = exercises;
     }
 }
