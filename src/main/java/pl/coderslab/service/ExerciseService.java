@@ -30,4 +30,16 @@ public class ExerciseService {
         }
         return false;
     }
+    public boolean editExercise(Exercise exercise){
+
+            Exercise exerciseInDb = exerciseRepository.findFirstById(exercise.getId());
+            exerciseInDb.setDescription(exercise.getDescription());
+            exerciseInDb.setName(exercise.getName());
+            exerciseInDb.setRecommend(exercise.getRecommend());
+            exerciseInDb.setRepeats(exercise.getRepeats());
+            exerciseInDb.setSeries(exercise.getSeries());
+            exerciseInDb.setWeight(exercise.getWeight());
+            exerciseRepository.save(exerciseInDb);
+            return true;
+    }
 }

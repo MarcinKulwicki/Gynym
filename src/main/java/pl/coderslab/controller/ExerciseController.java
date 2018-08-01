@@ -12,6 +12,7 @@ import pl.coderslab.service.ExerciseService;
 import pl.coderslab.service.TrainingService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.List;
 
@@ -26,6 +27,9 @@ public class ExerciseController {
     ExerciseRepository exerciseRepository;
     @Autowired
     TrainingService trainingService;
+    @Autowired
+    HttpSession sess;
+
 
     @GetMapping("")
     public String list(HttpServletRequest request, Model model){
@@ -45,11 +49,28 @@ public class ExerciseController {
         model.addAttribute("exercise", new Exercise());
         return "exercise/form";
     }
-    @PostMapping("add")
+    @PostMapping("/add")
     public String add(@Valid Exercise exercise, BindingResult bindingResult, HttpServletRequest request){
         if(!bindingResult.hasErrors()){
             exerciseService.addExercise(exercise,request);
         }
+        return "redirect:/exercise";
+    }
+    @GetMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable Long id){
+        model.addAttribute("exercise", exerciseRepository.findFirstById(id));
+        return "exercise/form";
+    }
+    @PostMapping("/edit/{id}")
+    public String edit(@Valid Exercise exercise, BindingResult bindingResult, HttpServletRequest request){
+        if(!bindingResult.hasErrors()){
+            exerciseService.editExercise(exercise);
+        }
+        return "redirect:/exercise";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        exerciseRepository.delete(exerciseRepository.findFirstById(id));
         return "redirect:/exercise";
     }
 }

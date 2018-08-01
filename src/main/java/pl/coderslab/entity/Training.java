@@ -33,7 +33,7 @@ public class Training {
     @ManyToOne
     private User user;
 
-    @OneToMany(mappedBy = "training")
+    @OneToMany(mappedBy = "training", fetch = FetchType.EAGER , cascade = CascadeType.REMOVE)
     private List<Exercise> exercises;
 
 

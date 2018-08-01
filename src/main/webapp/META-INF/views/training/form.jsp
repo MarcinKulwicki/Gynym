@@ -26,7 +26,7 @@
 
 <div class="card">
     <div class="card-header">
-        Body
+        Training
     </div>
 <form:form method="post" modelAttribute="training">
     <form:input path="name"/>
