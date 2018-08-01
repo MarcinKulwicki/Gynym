@@ -27,6 +27,7 @@
         <ul class="nav nav-pills card-header-pills">
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/delete">Delete User</a>
         </ul>
     </div>
     <div class="card-body">
