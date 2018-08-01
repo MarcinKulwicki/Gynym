@@ -21,7 +21,7 @@
 
 <ul class="nav justify-content-center">
     <li class="nav-item">
-        <a class="nav-link active" href="${pageContext.request.contextPath}/user">Home</a>
+        <a class="nav-link active" href="${pageContext.request.contextPath}/">Home</a>
     </li>
     <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/user">User</a>
@@ -31,6 +31,9 @@
     </li>
     <li class="nav-item">
         <a class="nav-link" href="${pageContext.request.contextPath}/exercise">Exercise</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="${pageContext.request.contextPath}/logout">Logout</a>
     </li>
 </ul>
 

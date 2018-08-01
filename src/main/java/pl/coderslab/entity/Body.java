@@ -26,22 +26,23 @@ public class Body {
     Long idv;
 
 
-    @OneToOne
-    private User user;
     @ManyToOne
-    private ProfilProgress profilProgress;
-
+    private User user;
 
     private Long weight;
     private Long hight;
 
-    private Long biceps;
+    private Long bicepsLeft;
+    private Long bicepsRight;
     private Long chest;
     private Long waist;
-    private Long thigh;
-    private Long calf;
+    private Long hips;
+    private Long thighLeft;
+    private Long thighRight;
+    private Long calfLeft;
+    private Long calfRight;
 
-    private LocalDateTime dateBody;
+
 
     // 'now' - actual body
     // 'start' - start body
@@ -51,6 +52,7 @@ public class Body {
 
 
     public Body(){
+        flag = "stat";
 
     }
 
@@ -70,14 +72,6 @@ public class Body {
         this.user = user;
     }
 
-    public ProfilProgress getProfilProgress() {
-        return profilProgress;
-    }
-
-    public void setProfilProgress(ProfilProgress profilProgress) {
-        this.profilProgress = profilProgress;
-    }
-
     public Long getWeight() {
         return weight;
     }
@@ -94,12 +88,20 @@ public class Body {
         this.hight = hight;
     }
 
-    public Long getBiceps() {
-        return biceps;
+    public Long getBicepsLeft() {
+        return bicepsLeft;
     }
 
-    public void setBiceps(Long biceps) {
-        this.biceps = biceps;
+    public void setBicepsLeft(Long bicepsLeft) {
+        this.bicepsLeft = bicepsLeft;
+    }
+
+    public Long getBicepsRight() {
+        return bicepsRight;
+    }
+
+    public void setBicepsRight(Long bicepsRight) {
+        this.bicepsRight = bicepsRight;
     }
 
     public Long getChest() {
@@ -118,28 +120,44 @@ public class Body {
         this.waist = waist;
     }
 
-    public Long getThigh() {
-        return thigh;
+    public Long getHips() {
+        return hips;
     }
 
-    public void setThigh(Long thigh) {
-        this.thigh = thigh;
+    public void setHips(Long hips) {
+        this.hips = hips;
     }
 
-    public Long getCalf() {
-        return calf;
+    public Long getThighLeft() {
+        return thighLeft;
     }
 
-    public void setCalf(Long calf) {
-        this.calf = calf;
+    public void setThighLeft(Long thighLeft) {
+        this.thighLeft = thighLeft;
     }
 
-    public LocalDateTime getDateBody() {
-        return dateBody;
+    public Long getThighRight() {
+        return thighRight;
     }
 
-    public void setDateBody(LocalDateTime dateBody) {
-        this.dateBody = dateBody;
+    public void setThighRight(Long thighRight) {
+        this.thighRight = thighRight;
+    }
+
+    public Long getCalfLeft() {
+        return calfLeft;
+    }
+
+    public void setCalfLeft(Long calfLeft) {
+        this.calfLeft = calfLeft;
+    }
+
+    public Long getCalfRight() {
+        return calfRight;
+    }
+
+    public void setCalfRight(Long calfRight) {
+        this.calfRight = calfRight;
     }
 
     public String getFlag() {
@@ -148,5 +166,14 @@ public class Body {
 
     public void setFlag(String flag) {
         this.flag = flag;
+    }
+
+    public Timestamp getData_mod() {
+        return data_mod;
+    }
+
+    @Override
+    public String toString() {
+        return data_mod.toLocalDateTime().getYear()+":"+data_mod.toLocalDateTime().getMonth()+":"+data_mod.toLocalDateTime().getDayOfMonth();
     }
 }

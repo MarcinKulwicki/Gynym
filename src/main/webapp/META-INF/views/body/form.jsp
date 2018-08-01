@@ -1,13 +1,14 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%--
   Created by IntelliJ IDEA.
   User: wdr434
   Date: 31.07.18
-  Time: 11:30
+  Time: 18:58
   To change this template use File | Settings | File Templates.
 --%>
-<!doctype html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<!doctype html>
 <html>
 <head>
     <!-- Required meta tags -->
@@ -17,34 +18,31 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
-    <title>Training List</title>
+    <title>Add Body</title>
 </head>
 <body>
 <c:import url="../fragments/header.jsp"/>
 
-
-<div class="card text-center">
+<div class="card">
     <div class="card-header">
-        <ul class="nav nav-pills card-header-pills">
-            <li class="nav-item">
-                <a class="nav-link disabled" href="${pageContext.request.contextPath}/training/add">Add Training</a>
-            </li>
-        </ul>
+        Body
     </div>
-    <div class="card-body">
-        <ul class="list-group">
-            <c:forEach items="${training}" var="tmp">
-                <h5 class="card-title">
-                    <li class="list-group-item">
-                        ${tmp.name}
-                        <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">Chose training</a>
-                    </li>
-                </h5>
-            </c:forEach>
-        </ul>
-    </div>
-</div>
+<form:form method="post" modelAttribute="body">
+    <form:input path="hight" placeholder="Height in cm"/>
+    <form:input path="weight" placeholder="Weight in kg"/>
+    <form:input path="bicepsLeft" placeholder="Biceps Left in cm"/>
+    <form:input path="bicepsRight" placeholder="Biceps Right in cm"/>
+    <form:input path="chest" placeholder="Chest in cm"/>
+    <form:input path="waist" placeholder="Waist in cm"/>
+    <form:input path="hips" placeholder="Hips in cm"/>
+    <form:input path="thighLeft" placeholder="Thigh Left in cm"/>
+    <form:input path="thighRight" placeholder="Thigh Right in cm"/>
+    <form:input path="calfLeft" placeholder="Calf Left in cm"/>
+    <form:input path="calfRight" placeholder="Calf Right in cm"/>
+    <input type="submit" value="Save">
+</form:form>
 
+</div>
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

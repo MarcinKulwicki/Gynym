@@ -23,9 +23,11 @@
 <body>
 <c:import url="../fragments/header.jsp"/>
 
-<div class="card text-center" style="width: 18rem;">
+<div class="card">
+    <div class="card-header">
+        Forgot Password
+    </div>
     <div class="card-body">
-        <h5 class="card-title">Register</h5>
         <form:form method="post" modelAttribute="user">
             <form:input path="username" placeholder="Username"/>
             <form:input path="email" placeholder="e-Mail"/>

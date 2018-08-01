@@ -13,6 +13,7 @@ import pl.coderslab.service.TrainingService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("/exercise")
@@ -29,6 +30,7 @@ public class ExerciseController {
     @GetMapping("")
     public String list(HttpServletRequest request, Model model){
         Long idTraining = trainingService.getTrainingIdFromSession(request);
+        if(idTraining == 0) model.addAttribute("noTraining", true);
         model.addAttribute("exercise", exerciseRepository.findAllByTraining_Id(idTraining));
         return "exercise/list";
     }
