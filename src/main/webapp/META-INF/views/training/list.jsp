@@ -36,10 +36,11 @@
             <c:forEach items="${training}" var="tmp">
                 <h5 class="card-title">
                     <li class="list-group-item">
-                        ${tmp.name}
-                        <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">Chose training</a>
+                        <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">${tmp.name} -> </a>
                     </li>
                 </h5>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/training/edit/${tmp.id}">Edit</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/training/delete/${tmp.id}">Delete</a>
             </c:forEach>
         </ul>
     </div>

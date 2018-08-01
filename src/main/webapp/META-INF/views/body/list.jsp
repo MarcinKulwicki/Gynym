@@ -27,6 +27,7 @@
         <ul class="nav nav-pills card-header-pills">
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/delete">Delete User</a>
         </ul>
     </div>
     <div class="card-body">
@@ -47,6 +48,8 @@
                         <th scope="col">Thigh Right [cm]</th>
                         <th scope="col">Calf Left [cm]</th>
                         <th scope="col">Calf Right [cm]</th>
+                        <th scope="col">Delete</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -64,6 +67,7 @@
                         <td>${tmp.thighRight}</td>
                         <td>${tmp.calfLeft}</td>
                         <td>${tmp.calfRight}</td>
+                        <td><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/delete/${tmp.id}">Delete</a></td>
                     </tr>
                     </c:forEach>
                     </tbody>

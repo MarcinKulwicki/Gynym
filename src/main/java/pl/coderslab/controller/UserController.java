@@ -25,6 +25,8 @@ public class UserController {
     UserRepository userRepository;
     @Autowired
     UserService userService;
+    @Autowired
+    HttpSession sess;
 
     @GetMapping("")
     public String loginGet(HttpServletRequest request){
@@ -61,6 +63,16 @@ public class UserController {
             userService.editUserInDb(user);
         }
         return "redirect:/user";
+    }
+    @GetMapping("/delete")
+    public String edit(HttpServletRequest request){
+        sess = request.getSession();
+        User user = (User) sess.getAttribute("UserLogged");
+        User userInBase = userRepository.findFirstByUsername(user.getUsername());
+        userInBase.setUsername("non");
+        userRepository.save(userInBase);
+        sess.invalidate();
+        return "redirect:/";
     }
 
 }

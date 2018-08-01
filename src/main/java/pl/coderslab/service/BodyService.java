@@ -17,15 +17,6 @@ public class BodyService {
     BodyRepository bodyRepository;
 
 
-    public boolean saveBodyToUserInDb(Body body, HttpServletRequest request){
-
-        body.setUser(userService.getUserFromSession(request));
-        if(body.getUser() != null){
-            bodyRepository.save(body);
-            return true;
-        }
-        return false;
-    }
 
     public boolean saveTargetBodyToUserInDb(Body body, HttpServletRequest request){
 
@@ -64,5 +55,25 @@ public class BodyService {
         body = bodyRepository.findByUser_IdOrderByData_mod(user.getId());
         if(body == null) return new Body();
         return body;
+    }
+
+    public Body addOrEditTarget(Body body) {
+
+        Body bodyInDb = bodyRepository.findFirstByUser_IdAndFlagLikeTarget(body.getUser().getId());
+        body.setFlag("target");
+        if(bodyInDb == null) return body;
+
+        bodyInDb.setBicepsLeft(body.getBicepsLeft());
+        bodyInDb.setBicepsRight(body.getCalfRight());
+        bodyInDb.setCalfLeft(body.getCalfLeft());
+        bodyInDb.setCalfRight(body.getCalfRight());
+        bodyInDb.setChest(body.getChest());
+        bodyInDb.setHight(body.getHight());
+        bodyInDb.setWeight(body.getWeight());
+        bodyInDb.setWaist(body.getWaist());
+        bodyInDb.setThighLeft(body.getThighLeft());
+        bodyInDb.setThighRight(body.getThighRight());
+        bodyInDb.setHips(body.getHips());
+        return bodyInDb;
     }
 }

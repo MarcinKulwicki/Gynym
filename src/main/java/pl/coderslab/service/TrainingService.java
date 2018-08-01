@@ -2,14 +2,17 @@ package pl.coderslab.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.coderslab.entity.Exercise;
 import pl.coderslab.entity.Training;
 import pl.coderslab.entity.User;
+import pl.coderslab.repository.ExerciseRepository;
 import pl.coderslab.repository.TrainingRepository;
 import pl.coderslab.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 @Component
@@ -21,6 +24,8 @@ public class TrainingService {
     HttpSession sess;
     @Autowired
     TrainingRepository trainingRepository;
+    @Autowired
+    ExerciseRepository exerciseRepository;
 
     public List<Training> getTrainingListForUserInSession(HttpServletRequest request){
         List<Training> trainings;
@@ -51,4 +56,10 @@ public class TrainingService {
         if(tmp == null) return 0L;
         return tmp;
     }
+    public void editTraining(Training training){
+        Training trainingInDb = trainingRepository.findFirstById(training.getId());
+        trainingInDb.setName(training.getName());
+        trainingRepository.save(trainingInDb);
+    }
+
 }

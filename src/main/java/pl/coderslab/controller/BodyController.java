@@ -5,14 +5,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Body;
+import pl.coderslab.entity.User;
 import pl.coderslab.repository.BodyRepository;
 import pl.coderslab.service.BodyService;
 import pl.coderslab.service.UserService;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 import java.util.Comparator;
 import java.util.List;
@@ -27,6 +30,8 @@ public class BodyController {
     UserService userService;
     @Autowired
     BodyService bodyService;
+    @Autowired
+    HttpSession sess;
 
     @GetMapping("")
     public String list(Model model, HttpServletRequest request){
@@ -44,7 +49,10 @@ public class BodyController {
     @PostMapping("/add")
     public String add(@Valid Body body, BindingResult bindingResult, HttpServletRequest request){
         if(!bindingResult.hasErrors()){
-            bodyService.saveBodyToUserInDb(body, request);
+            sess = request.getSession();
+            User user = (User)sess.getAttribute("UserLogged");
+            body.setUser(user);
+            bodyRepository.save(body);
         }
         return "redirect:/body";
     }
@@ -56,8 +64,16 @@ public class BodyController {
     @PostMapping("/target")
     public String target(@Valid Body body, BindingResult bindingResult, HttpServletRequest request){
         if(!bindingResult.hasErrors()){
-            bodyService.saveTargetBodyToUserInDb(body,request);
+            sess = request.getSession();
+            body.setUser((User) sess.getAttribute("UserLogged"));
+            body = bodyService.addOrEditTarget(body);
+            bodyRepository.save(body);
         }
+        return "redirect:/body";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        bodyRepository.delete(bodyRepository.findFirstById(id));
         return "redirect:/body";
     }
 }

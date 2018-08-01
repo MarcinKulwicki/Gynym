@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Training;
@@ -40,6 +41,21 @@ public class TrainingController {
         if(!bindingResult.hasErrors()){
             trainingService.add(training,request);
         }
+        return "redirect:/training";
+    }
+    @GetMapping("/edit/{id}")
+    public String edit(Model model, @PathVariable Long id){
+        model.addAttribute("training", trainingRepository.findFirstById(id));
+        return "training/form";
+    }
+    @PostMapping("/edit/{id}")
+    public String edit(@Valid Training training){
+        trainingService.editTraining(training);
+        return "redirect:/training";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        trainingRepository.delete(trainingRepository.findFirstById(id));
         return "redirect:/training";
     }
 }

@@ -43,7 +43,7 @@ public class User {
     private String password;
 
     //Profil uzytkownika
-    //TODO Validate profil?? inpossible i think
+    //TODO Przeniesc HTTP do Controllera a w Service tylko logika
     @OneToMany(mappedBy = "user")
     private List<Body> bodies;
 

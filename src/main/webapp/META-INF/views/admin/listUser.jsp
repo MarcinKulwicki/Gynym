@@ -1,10 +1,9 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wdr434
-  Date: 31.07.18
-  Time: 11:48
+  Date: 01.08.18
+  Time: 10:43
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -18,21 +17,17 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
-
-    <title>Training Form</title>
+    <title>Admin</title>
 </head>
 <body>
 <c:import url="../fragments/header.jsp"/>
 
-<div class="card">
-    <div class="card-header">
-        Training
-    </div>
-<form:form method="post" modelAttribute="training">
-    <form:input path="name"/>
-    <input type="submit" value="Add training">
-</form:form>
-</div>
+<c:forEach items="${user}" var="tmp">
+    ${tmp.email}
+    ${tmp.username}
+    ${tmp.password}
+</c:forEach>
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
