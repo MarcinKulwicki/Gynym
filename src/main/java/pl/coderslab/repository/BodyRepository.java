@@ -25,5 +25,5 @@ public interface BodyRepository extends JpaRepository<Body , Long> {
     List<Body> findAllByUser_IdAndFlagNotLikeTarget(@Param("id") Long id);
 
 
-
+    Body findFirstById(Long id);
 }

@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.entity.Body;
@@ -58,6 +59,11 @@ public class BodyController {
         if(!bindingResult.hasErrors()){
             bodyService.saveTargetBodyToUserInDb(body,request);
         }
+        return "redirect:/body";
+    }
+    @GetMapping("/delete/{id}")
+    public String delete(@PathVariable Long id){
+        bodyRepository.delete(bodyRepository.findFirstById(id));
         return "redirect:/body";
     }
 }

@@ -47,6 +47,8 @@
                         <th scope="col">Thigh Right [cm]</th>
                         <th scope="col">Calf Left [cm]</th>
                         <th scope="col">Calf Right [cm]</th>
+                        <th scope="col">Delete</th>
+
                     </tr>
                     </thead>
                     <tbody>
@@ -64,6 +66,7 @@
                         <td>${tmp.thighRight}</td>
                         <td>${tmp.calfLeft}</td>
                         <td>${tmp.calfRight}</td>
+                        <td><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/delete/${tmp.id}">Delete</a></td>
                     </tr>
                     </c:forEach>
                     </tbody>
