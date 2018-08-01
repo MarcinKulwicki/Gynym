@@ -37,18 +37,33 @@
                 You don't chose any traning, back to the Training Tab and Chose trening
         </h5>
         </c:if>
+        <h5 class="card-title">
+            <table class="table table-sm">
+                <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Recommend</th>
+                    <th scope="col">Series</th>
+                    <th scope="col">Repeats</th>
+                    <th scope="col">Weight</th>
+                </tr>
+                </thead>
+                <tbody>
         <c:forEach items="${exercise}" var="tmp">
-                    <h5 class="card-title">
-                    Exercise:
-                    ${tmp.id}
-                    ${tmp.name}
-                    ${tmp.description}
-                    ${tmp.recommend}
-                    ${tmp.series}
-                    ${tmp.repeats}
-                    ${tmp.weight}
-                    </h5>
+        <h5 class="card-title">
+            <tr>
+                <td>${tmp.name}</td>
+                <td>${tmp.description}</td>
+                <td>${tmp.recommend}</td>
+                <td>${tmp.series}</td>
+                <td>${tmp.repeats}</td>
+                <td>${tmp.weight}</td>
+            </tr>
+        </h5>
         </c:forEach>
+                </tbody>
+            </table>
     </div>
 </div>
 

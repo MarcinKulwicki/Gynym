@@ -32,12 +32,16 @@
         </ul>
     </div>
     <div class="card-body">
+        <ul class="list-group">
             <c:forEach items="${training}" var="tmp">
                 <h5 class="card-title">
-                ${tmp.name}
-                <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">Chose training</a>
+                    <li class="list-group-item">
+                        ${tmp.name}
+                        <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">Chose training</a>
+                    </li>
                 </h5>
             </c:forEach>
+        </ul>
     </div>
 </div>
 
