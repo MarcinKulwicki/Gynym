@@ -30,7 +30,9 @@ public class UserController {
 
     @GetMapping("")
     public String loginGet(HttpServletRequest request){
-        if(userService.getUserFromSession(request) != null) return "redirect:/body";
+        sess = request.getSession();
+        User user = (User) sess.getAttribute("UserLogged");
+        if(user != null) return "redirect:/body";
         return "user/login";
     }
     @PostMapping("")

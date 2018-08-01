@@ -21,12 +21,15 @@
 </head>
 <body>
 <c:import url="../fragments/header.jsp"/>
-
-<c:forEach items="${user}" var="tmp">
-    ${tmp.email}
-    ${tmp.username}
-    ${tmp.password}
-</c:forEach>
+<ul>
+    <c:forEach items="${user}" var="tmp">
+        <li>
+                ${tmp.email}
+                ${tmp.username}
+                ${tmp.password}
+        </li>
+    </c:forEach>
+</ul>
 
 
 <!-- Optional JavaScript -->
