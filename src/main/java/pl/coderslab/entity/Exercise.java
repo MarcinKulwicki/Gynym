@@ -40,6 +40,7 @@ public class Exercise {
     private Long series;
     private Long repeats;
     private Long weight;
+    private Long time;
 
 
     public Exercise(){
@@ -109,5 +110,37 @@ public class Exercise {
 
     public void setWeight(Long weight) {
         this.weight = weight;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
+    }
+
+    public Timestamp getData_add() {
+        return data_add;
+    }
+
+    public void setData_add(Timestamp data_add) {
+        this.data_add = data_add;
+    }
+
+    public Timestamp getData_mod() {
+        return data_mod;
+    }
+
+    public void setData_mod(Timestamp data_mod) {
+        this.data_mod = data_mod;
+    }
+
+    public Long getIdv() {
+        return idv;
+    }
+
+    public void setIdv(Long idv) {
+        this.idv = idv;
     }
 }

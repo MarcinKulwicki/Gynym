@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.Mapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.dto.UserDTO;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 import pl.coderslab.service.UserService;
@@ -29,26 +30,29 @@ public class UserController {
     HttpSession sess;
 
     @GetMapping("")
-    public String loginGet(HttpServletRequest request){
-        if(userService.getUserFromSession(request) != null) return "redirect:/body";
+    public String loginGet(){
+        UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+        if(userDTO != null) return "redirect:/body";
         return "user/login";
     }
     @PostMapping("")
     public String login(HttpServletRequest request){
-        if(userService.logIn(request)){
+        String password = request.getParameter("password");
+        String username = request.getParameter("username");
+        if(userService.logIn(username, password)){
             return "redirect:/body";
         }
         return "redirect:/user";
     }
     @GetMapping("/register")
     public String add(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDTO());
         return "user/register";
     }
     @PostMapping("/register")
-    public String add(@Valid User user, BindingResult bindingResult){
+    public String add(@Valid UserDTO userDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            userService.saveToDb(user);
+            userService.saveToDb(userDTO);
         }
         return "redirect:/user";
     }

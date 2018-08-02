@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import pl.coderslab.dto.ExerciseDTO;
 import pl.coderslab.entity.Exercise;
 import pl.coderslab.repository.ExerciseRepository;
 import pl.coderslab.service.ExerciseService;
@@ -32,45 +33,54 @@ public class ExerciseController {
 
 
     @GetMapping("")
-    public String list(HttpServletRequest request, Model model){
-        Long idTraining = trainingService.getTrainingIdFromSession(request);
-        if(idTraining == 0) model.addAttribute("noTraining", true);
-        model.addAttribute("exercise", exerciseRepository.findAllByTraining_Id(idTraining));
+    public String list(Model model){
+
+        Long trainingId = (Long) sess.getAttribute("trainingId");
+        if(trainingId == null)
+            model.addAttribute("noTraining", true);
+        List<ExerciseDTO> exerciseDTO = exerciseService.findAllByTraining_Id(trainingId);
+
+        model.addAttribute("exercise", exerciseDTO);
         return "exercise/list";
     }
-    @GetMapping("/{idTraining}")
-    public String list(Model model, @PathVariable Long idTraining, HttpServletRequest request){
-        trainingService.addTrainingToSession(idTraining, request);
-        model.addAttribute("exercise", exerciseRepository.findAllByTraining_Id(idTraining));
+    @GetMapping("/{trainingId}")
+    public String list(Model model, @PathVariable Long trainingId){
+
+        sess.setAttribute("trainingId", trainingId);
+        List<ExerciseDTO> exerciseDTO = exerciseService.findAllByTraining_Id(trainingId);
+        model.addAttribute("exercise", exerciseDTO);
         return "exercise/list";
     }
     @GetMapping("/add")
     public String add(Model model){
-        model.addAttribute("exercise", new Exercise());
+        model.addAttribute("exercise", new ExerciseDTO());
         return "exercise/form";
     }
     @PostMapping("/add")
-    public String add(@Valid Exercise exercise, BindingResult bindingResult, HttpServletRequest request){
+    public String add(@Valid ExerciseDTO exerciseDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            exerciseService.addExercise(exercise,request);
+            Long trainingId = (Long) sess.getAttribute("trainingId");
+            exerciseService.saveExercise(exerciseDTO, trainingId);
         }
         return "redirect:/exercise";
     }
     @GetMapping("/edit/{id}")
     public String edit(Model model, @PathVariable Long id){
-        model.addAttribute("exercise", exerciseRepository.findFirstById(id));
+        ExerciseDTO exerciseDTO = exerciseService.findByExercise_Id(id);
+        model.addAttribute("exercise", exerciseDTO);
         return "exercise/form";
     }
     @PostMapping("/edit/{id}")
-    public String edit(@Valid Exercise exercise, BindingResult bindingResult, HttpServletRequest request){
+    public String edit(@Valid ExerciseDTO exerciseDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            exerciseService.editExercise(exercise);
+            Long trainingId = (Long) sess.getAttribute("trainingId");
+            exerciseService.saveExercise(exerciseDTO,trainingId);
         }
         return "redirect:/exercise";
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        exerciseRepository.delete(exerciseRepository.findFirstById(id));
+        exerciseService.deleteExercise(id);
         return "redirect:/exercise";
     }
 }

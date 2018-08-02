@@ -3,6 +3,7 @@ package pl.coderslab.service;
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import pl.coderslab.dto.UserDTO;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.UserRepository;
 
@@ -19,26 +20,42 @@ public class UserService {
     HttpSession sess;
 
 
-    public boolean logIn(HttpServletRequest request){
+    public boolean logIn(String username, String password){
 
-        User user = new User();
-        user.setPassword(request.getParameter("password"));
-        user.setUsername(request.getParameter("username"));
+        UserDTO userDTO = new UserDTO();
+        userDTO.setUsername(username);
+        userDTO.setPassword(password);
 
-        User userInBase = userRepository.findFirstByUsername(user.getUsername());
-        if(userInBase != null) {
-            if (BCrypt.checkpw(user.getPassword(), userInBase.getPassword())) {
-                sess = request.getSession();
-                sess.setAttribute("UserLogged", userInBase);
+        User user = userRepository.findFirstByUsername(userDTO.getUsername());
+        if(user != null) {
+            if (BCrypt.checkpw(userDTO.getPassword(), user.getPassword())) {
+                userDTO.setId(user.getId());
+                sess.setAttribute("UserLogged", userDTO);
                 return true;
             }
         }
         return false;
     }
-    public void saveToDb(User user){
-        String password = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-        user.setPassword(password);
-        userRepository.save(user);
+    public void saveToDb(UserDTO userDTO){
+        User user = userRepository.findFirstByUsername(userDTO.getUsername());
+        if(user.getUsername() == null){
+
+            String password = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
+            userDTO.setPassword(password);
+            userRepository.save(convertToUser(userDTO, new User()));
+        }
+    }
+
+    public User convertToUser(UserDTO userDTO, User user){
+
+        user.setId(userDTO.getId());
+        user.setData_add(userDTO.getData_add());
+        user.setData_mod(userDTO.getData_mod());
+        user.setIdv(userDTO.getIdv());
+        user.setUsername(userDTO.getUsername());
+        user.setPassword(userDTO.getPassword());
+        user.setEmail(userDTO.getPassword());
+        return user;
     }
 
     public boolean editUserInDb(User user){

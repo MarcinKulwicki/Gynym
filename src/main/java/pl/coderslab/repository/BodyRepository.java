@@ -21,8 +21,11 @@ public interface BodyRepository extends JpaRepository<Body , Long> {
     @Query(value = "SELECT a FROM Body a where a.user.id = :id and a.flag like 'target'")
     Body findFirstByUser_IdAndFlagLikeTarget(@Param("id") Long id);
 
-    @Query(value = "SELECT a FROM Body a where a.user.id = :id and a.flag not like 'target'")
-    List<Body> findAllByUser_IdAndFlagNotLikeTarget(@Param("id") Long id);
+    @Query(value = "SELECT a FROM Body a where a.user.id = :id and a.flag like 'start'")
+    Body findFirstByUser_IdAndFlagLikeStart(@Param("id") Long id);
+
+    @Query(value = "SELECT a FROM Body a where a.user.id = :id and a.flag like 'stat' order by a.data_mod desc")
+    List<Body> findFirstByUser_IDAndFlagLikeStatOrderByDataMod(@Param("id") Long id);
 
 
     Body findFirstById(Long id);
