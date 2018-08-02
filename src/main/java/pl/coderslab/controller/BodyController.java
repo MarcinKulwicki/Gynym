@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.dto.BodyDTO;
+import pl.coderslab.dto.UserDTO;
 import pl.coderslab.entity.Body;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.BodyRepository;
@@ -37,12 +38,12 @@ public class BodyController {
     @GetMapping("")
     public String list(Model model){
 
-        User user = (User) sess.getAttribute("UserLogged");
+        UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
         //BENG!
-        List<BodyDTO> bodyDTOList = bodyService.findAllByUserId(user.getId());
+        List<BodyDTO> bodyDTOList = bodyService.findAllByUserId(userDTO.getId());
         bodyDTOList.sort(Comparator.comparing(BodyDTO::getData_mod));
 
-        Long[] progress = bodyService.getProgressBarForCategory("",bodyService.getTargetNowAndStartPointBody(user.getId()));
+        Long[] progress = bodyService.getProgressBarForCategory("",bodyService.getTargetNowAndStartPointBody(userDTO.getId()));
         model.addAttribute("start", progress[0]);
         model.addAttribute("now", progress[1]);
         model.addAttribute("end", progress[2]);
@@ -54,12 +55,12 @@ public class BodyController {
     @GetMapping("/{name}")
     public String list(Model model, @PathVariable String name){
 
-        User user = (User) sess.getAttribute("UserLogged");
+        UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
         //BENG!
-        List<BodyDTO> bodyDTOList = bodyService.findAllByUserId(user.getId());
+        List<BodyDTO> bodyDTOList = bodyService.findAllByUserId(userDTO.getId());
         bodyDTOList.sort(Comparator.comparing(BodyDTO::getData_mod));
 
-        Long[] progress = bodyService.getProgressBarForCategory(name,bodyService.getTargetNowAndStartPointBody(user.getId()));
+        Long[] progress = bodyService.getProgressBarForCategory(name,bodyService.getTargetNowAndStartPointBody(userDTO.getId()));
         model.addAttribute("start", progress[0]);
         model.addAttribute("now", progress[1]);
         model.addAttribute("end", progress[2]);
@@ -69,23 +70,23 @@ public class BodyController {
     }
 
     @GetMapping("/add")
-    public String add(Model model, HttpServletRequest request){
-        User user = userService.getUserFromSession(request);
-        model.addAttribute("body", bodyService.getNewBodyOrLatest(user.getId()));
+    public String add(Model model){
+        UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+        model.addAttribute("body", bodyService.getNewBodyOrLatest(userDTO.getId()));
         return "body/form";
     }
     @PostMapping("/add")
     public String add(@Valid BodyDTO bodyDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            User user = (User)sess.getAttribute("UserLogged");
-            bodyService.saveBody(bodyDTO, user.getId());
+            UserDTO userDTO = (UserDTO)sess.getAttribute("UserLogged");
+            bodyService.saveBody(bodyDTO, userDTO.getId());
         }
         return "redirect:/body";
     }
     @GetMapping("/target")
     public String target(Model model){
-        User user = (User)sess.getAttribute("UserLogged");
-        BodyDTO bodyDTO = bodyService.getNewTargetOrLatest(user.getId());
+        UserDTO userDTO = (UserDTO)sess.getAttribute("UserLogged");
+        BodyDTO bodyDTO = bodyService.getNewTargetOrLatest(userDTO.getId());
         model.addAttribute("body",bodyDTO);
         return "body/form";
     }
@@ -93,23 +94,23 @@ public class BodyController {
     public String target(@Valid BodyDTO bodyDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
 
-            User user = (User) sess.getAttribute("UserLogged");
-            bodyService.addOrEditTarget(bodyDTO, user.getId());
+            UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+            bodyService.addOrEditTarget(bodyDTO, userDTO.getId());
         }
         return "redirect:/body";
     }
     @GetMapping("/start")
     public String start(Model model){
-        User user = (User)sess.getAttribute("UserLogged");
-        BodyDTO bodyDTO = bodyService.getNewStartOrLatest(user.getId());
+        UserDTO userDTO = (UserDTO)sess.getAttribute("UserLogged");
+        BodyDTO bodyDTO = bodyService.getNewStartOrLatest(userDTO.getId());
         model.addAttribute("body", bodyDTO);
         return "body/form";
     }
     @PostMapping("/start")
     public String start(@Valid BodyDTO bodyDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            User user = (User) sess.getAttribute("UserLogged");
-            bodyService.addOrEditStart(bodyDTO, user.getId());
+            UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+            bodyService.addOrEditStart(bodyDTO, userDTO.getId());
         }
         return "redirect:/body";
     }

@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import pl.coderslab.dto.TrainingDTO;
+import pl.coderslab.dto.UserDTO;
 import pl.coderslab.entity.Training;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.TrainingRepository;
@@ -34,8 +35,8 @@ public class TrainingController {
 
     @GetMapping("")
     public String list(Model model){
-        User user = (User) sess.getAttribute("UserLogged");
-        List<TrainingDTO> trainingDTOList = trainingService.getAllTrainingDTOByUser_Id(user.getId());
+        UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+        List<TrainingDTO> trainingDTOList = trainingService.getAllTrainingDTOByUser_Id(userDTO.getId());
         model.addAttribute("training", trainingDTOList);
         return "training/list";
     }
@@ -47,8 +48,8 @@ public class TrainingController {
     @PostMapping("add")
     public String add(@Valid TrainingDTO trainingDTO, BindingResult bindingResult, HttpServletRequest request){
         if(!bindingResult.hasErrors()){
-            User user = (User) sess.getAttribute("UserLogged");
-            trainingService.saveTraining(trainingDTO, user.getId());
+            UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+            trainingService.saveTraining(trainingDTO, userDTO.getId());
         }
         return "redirect:/training";
     }
@@ -62,8 +63,8 @@ public class TrainingController {
     @PostMapping("/edit/{id}")
     public String edit(@Valid TrainingDTO trainingDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()) {
-            User user = (User) sess.getAttribute("UserLogged");
-            trainingService.saveTraining(trainingDTO, user.getId());
+            UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+            trainingService.saveTraining(trainingDTO, userDTO.getId());
         }
         return "redirect:/training";
     }
