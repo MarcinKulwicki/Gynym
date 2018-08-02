@@ -22,8 +22,9 @@
 </head>
 <body>
 <c:import url="../fragments/header.jsp"/>
+<style><%@include file="/META-INF/views/style.css"%></style>
 
-<div class="card">
+<div>
     <div class="card-header">
         Login
     </div>
