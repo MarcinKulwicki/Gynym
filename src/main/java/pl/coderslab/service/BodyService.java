@@ -104,17 +104,21 @@ public class BodyService {
         return bodyInDb;
     }
 
-    public List<Body> getTargetNowAndStartPointBody(Long id){
+    public List<Body> getTargetNowAndStartPointBody(Long id) {
         Body bodyStart = bodyRepository.findFirstByUser_IdAndFlagLikeStart(id);
         List<Body> bodyNow = bodyRepository.findFirstByUser_IDAndFlagLikeStatOrderByDataMod(id);
         Body bodyTarget = bodyRepository.findFirstByUser_IdAndFlagLikeTarget(id);
+
+        if (bodyStart != null && bodyNow != null && bodyTarget != null) {
+
 
         List<Body> bodies = new ArrayList<>();
         bodies.add(bodyStart);
         bodies.add(bodyNow.get(0));
         bodies.add(bodyTarget);
-
-        return bodies;
+            return bodies;
+        }
+        return bodyRepository.findAll();
     }
     public Long[] getProgressBarForCategory(String category, List<Body> bodies){
 
