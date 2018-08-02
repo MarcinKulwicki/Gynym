@@ -47,6 +47,7 @@
                     <th scope="col">Series</th>
                     <th scope="col">Repeats</th>
                     <th scope="col">Weight</th>
+                    <th scope="col">Time</th>
                     <th scope="col">Edit</th>
                     <th scope="col">Delete</th>
                 </tr>
@@ -61,6 +62,7 @@
                 <td>${tmp.series}</td>
                 <td>${tmp.repeats}</td>
                 <td>${tmp.weight}</td>
+                <td>${tmp.time}</td>
                 <td><a class="nav-link disabled" href="${pageContext.request.contextPath}/exercise/edit/${tmp.id}">Edit</a></td>
                 <td><a class="nav-link disabled" href="${pageContext.request.contextPath}/exercise/delete/${tmp.id}">Delete</a></td>
             </tr>

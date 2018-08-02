@@ -27,9 +27,15 @@
         <ul class="nav nav-pills card-header-pills">
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/start">Change Start</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/delete">Delete User</a>
         </ul>
     </div>
+
+    <div class="progress">
+        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="${now}" aria-valuemin="${start}" aria-valuemax="${end}" style="width: ${proc}%"></div>
+    </div>
+
     <div class="card-body">
 
             <h5 class="card-title">
@@ -38,16 +44,16 @@
                     <tr>
                         <th scope="col">Date</th>
                         <th scope="col">Height [cm]</th>
-                        <th scope="col">Weight [kg]</th>
-                        <th scope="col">Biceps Left [cm]</th>
-                        <th scope="col">Biceps Right [cm]</th>
-                        <th scope="col">Chest [cm]</th>
-                        <th scope="col">Waist [cm]</th>
-                        <th scope="col">Hips [cm]</th>
-                        <th scope="col">Thigh Left [cm]</th>
-                        <th scope="col">Thigh Right [cm]</th>
-                        <th scope="col">Calf Left [cm]</th>
-                        <th scope="col">Calf Right [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/Weight">Weight</a> [kg]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/BicepsLeft">BicepsLeft</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/BicepsRight">BicepsRight</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/Chest">Chest</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/Waist">Waist</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/Hips">Hips</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/ThighLeft">ThighLeft</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/ThighRight">ThighRight</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/CalfLeft">CalfLeft</a> [cm]</th>
+                        <th scope="col"><a class="nav-link disabled" href="${pageContext.request.contextPath}/body/CalfRight">CalfRight</a> [cm]</th>
                         <th scope="col">Delete</th>
 
                     </tr>

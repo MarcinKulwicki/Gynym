@@ -35,12 +35,39 @@ public class BodyController {
 
     @GetMapping("")
     public String list(Model model, HttpServletRequest request){
+
+        sess = request.getSession();
+        User user = (User) sess.getAttribute("UserLogged");
         //BENG!
-        List<Body> body = bodyRepository.findAllByUser_Id(userService.getUserIdFromSession(request));
+        List<Body> body = bodyRepository.findAllByUser_Id(user.getId());
         body.sort(Comparator.comparing(Body::getData_mod));
+        Long[] progress = bodyService.getProgressBarForCategory("",bodyService.getTargetNowAndStartPointBody(user.getId()));
+        model.addAttribute("start", progress[0]);
+        model.addAttribute("now", progress[1]);
+        model.addAttribute("end", progress[2]);
+        model.addAttribute("proc", progress[3]);
         model.addAttribute("body", body);
         return "body/list";
     }
+
+    @GetMapping("/{name}")
+    public String list(Model model, HttpServletRequest request, @PathVariable String name){
+
+        sess = request.getSession();
+        User user = (User) sess.getAttribute("UserLogged");
+        //BENG!
+        List<Body> body = bodyRepository.findAllByUser_Id(user.getId());
+        body.sort(Comparator.comparing(Body::getData_mod));
+        //TODO model to progress bar
+        Long[] progress = bodyService.getProgressBarForCategory(name,bodyService.getTargetNowAndStartPointBody(user.getId()));
+        model.addAttribute("start", progress[0]);
+        model.addAttribute("now", progress[1]);
+        model.addAttribute("end", progress[2]);
+        model.addAttribute("proc", progress[3]);
+        model.addAttribute("body", body);
+        return "body/list";
+    }
+
     @GetMapping("/add")
     public String add(Model model, HttpServletRequest request){
         model.addAttribute("body", bodyService.getNewBodyOrLatest(request));
@@ -67,6 +94,21 @@ public class BodyController {
             sess = request.getSession();
             body.setUser((User) sess.getAttribute("UserLogged"));
             body = bodyService.addOrEditTarget(body);
+            bodyRepository.save(body);
+        }
+        return "redirect:/body";
+    }
+    @GetMapping("/start")
+    public String start(Model model, HttpServletRequest request){
+        model.addAttribute("body", bodyService.getNewStartOrLatest(request));
+        return "body/form";
+    }
+    @PostMapping("/start")
+    public String start(@Valid Body body, BindingResult bindingResult, HttpServletRequest request){
+        if(!bindingResult.hasErrors()){
+            sess = request.getSession();
+            body.setUser((User) sess.getAttribute("UserLogged"));
+            body = bodyService.addOrEditStart(body);
             bodyRepository.save(body);
         }
         return "redirect:/body";

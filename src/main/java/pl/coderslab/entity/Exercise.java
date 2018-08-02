@@ -40,6 +40,7 @@ public class Exercise {
     private Long series;
     private Long repeats;
     private Long weight;
+    private Long time;
 
 
     public Exercise(){
@@ -109,5 +110,13 @@ public class Exercise {
 
     public void setWeight(Long weight) {
         this.weight = weight;
+    }
+
+    public Long getTime() {
+        return time;
+    }
+
+    public void setTime(Long time) {
+        this.time = time;
     }
 }

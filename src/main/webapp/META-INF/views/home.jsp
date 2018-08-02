@@ -21,33 +21,49 @@
 </head>
 <body>
 <c:import url="fragments/header.jsp"/>
-<div class="card">
+
+<style><%@include file="/META-INF/views/style.css"%></style>
+<div class="backkk" class="card">
     <div class="card-header">
         Home
     </div>
-    <div class="card-body">
-        Proin id leo nec ligula eget velit wisi, vitae est neque, mattis ac, mattis sem. Pellentesque tincidunt in, volutpat facilisis, ante ante, vitae lorem lorem tempus ac, vestibulum wisi bibendum vel, magna. Quisque in vehicula ut, sapien. In tempus dictum velit, scelerisque porttitor egestas. Mauris pretium, ipsum enim, malesuada fames ac elit justo nibh, eu magna ut porta scelerisque, diam. Fusce nisl auctor auctor tortor orci quis orci. Nullam pharetra faucibus. Nulla ipsum primis in faucibus in, ipsum. Sed ac dolor. Pellentesque ac massa quis massa volutpat massa sit amet neque ac augue. Maecenas malesuada ultricies. Donec euismod ut, porta et, scelerisque lorem semper dui, dictum sed, dui. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos hymenaeos.
-    </div>
 
-    <div class="card-body">
-        Quisque pharetra, urna fringilla mi, gravida vel, viverra elit. Sed a dolor. Integer hendrerit sollicitudin posuere, nibh placerat scelerisque, wisi diam, venenatis nulla. Suspendisse a leo. Pellentesque mattis id, condimentum dignissim.
-    </div>
+    <h2>Staying fit: a question of attitude</h2>
 
-    <div class="card-body">
-        Nunc condimentum ac, augue. Morbi urna mi, eu euismod elit. Proin luctus. Maecenas nec tortor massa ut metus. Maecenas in augue. Praesent rhoncus wisi. Mauris mattis feugiat quam leo, ac tempor magna. Fusce venenatis nunc, mollis luctus nisl. Morbi mattis at, suscipit faucibus orci nec tincidunt turpis et leo.
-    </div>
+    <div>In a performance-driven society that is in constant search of eternal youth, some people may find it difficult to note the effects that time has on their body. A changing figure, the appearance of wrinkles, fading hair colour, etc. Beyond these physical signs indicating that you are getting older and wiser, you may notice other changes as well: decreased energy or endurance, altered sleep, onset of health problems, etc.</div>
 
-    <div class="card-body">
-        Suspendisse luctus et magnis dis parturient montes, nascetur ridiculus mus. Vivamus semper aliquam tempor vel, eleifend mi, viverra est turpis vulputate tempus rutrum vel, dui. Suspendisse placerat a, laoreet viverra. Cras nec quam. Sed lobortis condimentum sagittis vel, varius dui. Suspendisse eu convallis pellentesque, justo fringilla orci. Nunc justo. Sed interdum eu, magna. Donec tempor. Pellentesque nunc justo a odio eget augue. Fusce et enim. Aenean bibendum ac, mattis eget, ante. Curabitur quis diam. Fusce ullamcorper quam. Praesent a luctus augue. Praesent nec urna vitae mauris. Mauris mattis ac, sodales arcu, dapibus sit amet quam risus, commodo ligula, et ipsum. Nam eu diam. Nullam euismod, quam eu mauris. Ut pretium. Praesent in volutpat odio nec erat volutpat. Nam eget egestas ac, vestibulum ac, tincidunt fermentum. Proin justo. Aliquam vel bibendum ac, ultricies a, vestibulum quis, massa. Proin posuere. Quisque facilisis hendrerit. Donec nonummy eget, dolor. Donec nec magna. Curabitur et turpis. Nullam a diam. Ut sodales in, dapibus non, arcu. Duis sit amet cursus wisi semper eu, dapibus ac, blandit vel, eros. Sed a leo. Quisque a nisl. Sed venenatis. Donec porttitor ullamcorper, enim sodales arcu, in nulla fermentum in, iaculis pretium vehicula vitae, lorem. Cras ornare quam. Maecenas sapien. Nam nec urna vitae libero quis arcu. Cum sociis natoque penatibus et metus. Cras adipiscing sollicitudin. Nulla diam bibendum mi, porttitor ante a dictum a, volutpat metus. Nullam erat eget elit rhoncus libero in enim. Aenean ligula. Phasellus vestibulum. Etiam sapien magna felis non placerat ante.
-    </div>
+    <div>Health is an asset, a precious gift that is often taken for granted when we are young. As we age, we become more and more aware of its value, and sometimes, of its fragility. Therefore, it is of utmost importance to double our efforts to preserve it.</div>
 
-    <div class="card-body">
-        Duis aliquam, libero. Duis luctus et malesuada ultricies vitae, mollis nibh ac lectus. Praesent sollicitudin, urna ut orci luctus augue. Nam risus libero, posuere eget, bibendum leo ut felis laoreet molestie mollis neque vitae sapien sodales sapien id tortor fringilla massa sit amet, consectetuer dolor ac erat. Suspendisse pede. Mauris molestie venenatis pede. Duis consequat magna porttitor eros, dapibus tellus. Fusce facilisis eget, aliquet commodo nec, nisl. Nam diam at ipsum primis in wisi. Integer auctor mattis. Aliquam hendrerit sagittis. Nullam justo dolor, varius ac, laoreet urna. Nunc elementum. Aenean dui quis pellentesque facilisis. Maecenas eget quam ultrices lorem fermentum a, faucibus orci mauris consequat lacus vitae arcu vitae arcu a nisl. Ut blandit, quam. Nunc elementum. Phasellus ornare velit eleifend purus feugiat fermentum nec, hendrerit libero. Morbi sem et netus et turpis. Donec libero in mattis et, lobortis vitae, pellentesque consectetuer, augue sit amet nibh. Etiam eu eros. Sed interdum augue. Nam nunc iaculis lectus. Nullam sit amet ipsum. Nam ut pede. Nullam justo vulputate tempus erat ornare bibendum ac, augue. Praesent feugiat. Proin posuere. Vestibulum nibh purus, pharetra elementum. Fusce sed lacus. Aenean feugiat ac, eleifend eget, lacinia aliquet. Praesent vitae felis. Integer quis orci luctus et ultrices mi. Sed et netus et malesuada dolor. Morbi sed urna. Sed ipsum non ante sit amet dui. Ut id nulla pulvinar gravida, nisl at ipsum. Nam nec tellus. Cras volutpat a, tellus. Morbi vitae odio eu auctor vel, vehicula tortor justo iaculis malesuada elit metus, vulputate sed, dui. Etiam sit amet, aliquam id, elementum eu, neque. Vestibulum ante ipsum wisi, tempor interdum arcu sit amet felis blandit suscipit, risus in nulla in massa. Ut id lacus lorem, ornare a, iaculis odio id sapien. Curabitur nec urna quis leo. Integer nibh eu sodales libero. Vivamus ullamcorper sem leo luctus et velit. Integer id mi. Cras adipiscing elit. In non dui. Aliquam ante at tortor. Proin quis leo. Vivamus a pellentesque auctor congue arcu elementum nunc. Nam consectetuer at, volutpat eu, tortor. Vestibulum ante sit amet quam. Phasellus a leo.
-    </div>
+    <h2>Choosing to age well</h2>
 
-    <div class="card-body">
-        Phasellus quis enim. Nam ut justo ac nisl. Vestibulum a ante nec tempor auctor, sapien dui tincidunt mi, eu pede bibendum tellus, quis velit a nunc. Maecenas nec felis sed ante. Vivamus est. Aliquam erat sem ante at elit at porttitor vel, tortor. In ultricies lobortis, massa quis risus. Morbi eget tortor. Mauris mattis lorem dapibus nisl. Vestibulum ante ipsum dolor a metus. Aliquam bibendum.
-    </div>
+    <div>Aging is inevitable for everyone, but it is possible to keep on smiling through it all. Why not? Taking charge of your of your health and well-being will help you to get through the years with confidence and optimism. Some unavoidable factors are out of your control, such as the aging process and menopause or andropause, but you can adopt good habits and a healthy lifestyle that will help you live better, and perhaps, longer.</div>
+
+    <div>Here are a few tips on how to stay fit and healthy. You might even feel younger!</div>
+
+    <ul>
+        <li>Follow the Canada Food Guide. This guide, (available, amongst other things, on Internet) offers tools for a healthy, varied and balanced diet according to your specific age group.</li>
+
+        <li>Maintain a healthy weight. In addition to its harmful physical effects, being overweight can also affect your morale.</li>
+
+        <li>Exercise regularly. It’s never too late to start. Practise an activity that you enjoy and that will promote your cardiovascular, bone and muscle health, such as walking, bike riding, swimming, dancing, etc.</li>
+
+        <li>Take every opportunity to be active. Doing an exercise program is a great idea, but to reap the benefits of physical activity, it's simply a matter of being active a little every day.</li>
+
+        <li>Quit smoking.  Smoking makes you age faster and is harmful to your health in all sorts of ways. No other action will have as positive an effect on your health as to quit smoking.</li>
+
+        <li>Learn to relax. It’s now time to think of yourself and to reduce stress. Some activities may help you to relax such as yoga or meditation.</li>
+
+        <li>Take the time to laugh and enjoy yourself. Your health and happiness depend in part on the time you set aside for yourself to have fun. Spend time with the people you love, go out to see a show and seize the opportunities to have a good laugh!</li>
+
+        <li>Use your gray matter. Stay active both in body and mind. Defy the effects of aging on your intellectual abilities by doing activities that stimulate the mind.</li>
+
+        <li>Discover new passions. Passion is a motor that allows us to move forward at all ages. Take on the challenge and explore hobbies that will nurture your inner flame.</li>
+
+        <li>Follow your doctor’s recommendations. Seeing your health professionals regularly (doctor, dentist, specialist, etc.), following their advice and taking your medications every day as prescribed, are all effective ways to promote a longer and healthier life.</li>
+
+    </ul>
+    <div>Speak to your pharmacist for additional information or advice on the ways to stay fit and healthy at any age.</div>
+
 </div>
 
 <!-- Optional JavaScript -->

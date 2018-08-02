@@ -28,17 +28,17 @@
         Body
     </div>
 <form:form method="post" modelAttribute="body">
-    <form:input path="hight" placeholder="Height in cm"/>
-    <form:input path="weight" placeholder="Weight in kg"/>
-    <form:input path="bicepsLeft" placeholder="Biceps Left in cm"/>
-    <form:input path="bicepsRight" placeholder="Biceps Right in cm"/>
-    <form:input path="chest" placeholder="Chest in cm"/>
-    <form:input path="waist" placeholder="Waist in cm"/>
-    <form:input path="hips" placeholder="Hips in cm"/>
-    <form:input path="thighLeft" placeholder="Thigh Left in cm"/>
-    <form:input path="thighRight" placeholder="Thigh Right in cm"/>
-    <form:input path="calfLeft" placeholder="Calf Left in cm"/>
-    <form:input path="calfRight" placeholder="Calf Right in cm"/>
+    Height:<form:input path="hight" placeholder="Height in cm"/><br/>
+    Weight:<form:input path="weight" placeholder="Weight in kg"/>
+    Biceps Left:<form:input path="bicepsLeft" placeholder="Biceps Left in cm"/>
+    Biceps Right:<form:input path="bicepsRight" placeholder="Biceps Right in cm"/>
+    Chest:<form:input path="chest" placeholder="Chest in cm"/>
+    Waist:<form:input path="waist" placeholder="Waist in cm"/>
+    Hips:<form:input path="hips" placeholder="Hips in cm"/>
+    Thigh Left:<form:input path="thighLeft" placeholder="Thigh Left in cm"/>
+    Thigh Right:<form:input path="thighRight" placeholder="Thigh Right in cm"/>
+    Calf Left:<form:input path="calfLeft" placeholder="Calf Left in cm"/>
+    Calf Right:<form:input path="calfRight" placeholder="Calf Right in cm"/>
     <input type="submit" value="Save">
 </form:form>
 

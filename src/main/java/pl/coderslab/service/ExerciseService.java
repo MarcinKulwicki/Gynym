@@ -39,6 +39,7 @@ public class ExerciseService {
             exerciseInDb.setRepeats(exercise.getRepeats());
             exerciseInDb.setSeries(exercise.getSeries());
             exerciseInDb.setWeight(exercise.getWeight());
+            exerciseInDb.setTime(exercise.getTime());
             exerciseRepository.save(exerciseInDb);
             return true;
     }

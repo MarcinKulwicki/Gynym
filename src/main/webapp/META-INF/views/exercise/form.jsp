@@ -34,6 +34,7 @@
     <form:input path="series" placeholder="Series"/>
     <form:input path="repeats" placeholder="repeats"/>
     <form:input path="weight" placeholder="weight"/>
+    <form:input path="time" placeholder="Time"/>
     <input type="submit" value="Add exercise to Trening">
 </form:form>
 </div>
