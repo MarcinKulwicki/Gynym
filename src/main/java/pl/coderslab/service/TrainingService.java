@@ -91,8 +91,8 @@ public class TrainingService {
 
         return trainingDTO;
     }
-    private Training convertToTraining(TrainingDTO trainingDTO){
-        Training training = new Training();
+    private Training convertToTraining(TrainingDTO trainingDTO , Training training){
+
 
         training.setName(trainingDTO.getName());
         training.setData_add(trainingDTO.getData_add());
@@ -104,12 +104,12 @@ public class TrainingService {
     }
 
     public void saveTraining(TrainingDTO trainingDTO, Long userId) {
+        Training training;
         if(trainingDTO.getId()==null){
-
+            training = convertToTraining(trainingDTO, new Training());
         }else {
-
+            training = convertToTraining(trainingDTO, trainingRepository.findFirstById(trainingDTO.getId()));
         }
-        Training training = convertToTraining(trainingDTO);
         training.setUser(userRepository.findFirstById(userId));
         if(training.getId()!=null)
             training.setExercises(exerciseRepository.findAllByTraining_Id(training.getId()));
@@ -121,5 +121,8 @@ public class TrainingService {
         Training training = trainingRepository.findFirstById(id);
         TrainingDTO trainingDTO = convertToTrainingDTO(training);
         return trainingDTO;
+    }
+
+    public void deleteTraining(Long id) { trainingRepository.delete(trainingRepository.findFirstById(id));
     }
 }

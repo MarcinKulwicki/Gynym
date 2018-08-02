@@ -69,7 +69,8 @@ public class TrainingController {
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        trainingRepository.delete(trainingRepository.findFirstById(id));
+
+        trainingService.deleteTraining(id);
         return "redirect:/training";
     }
 }
