@@ -76,8 +76,8 @@ public class ExerciseService {
         //exerciseDTO.setTrainingDTO(exercise.getTraining());
         return exerciseDTO;
     }
-    private Exercise convertToExercise(ExerciseDTO exerciseDTO){
-        Exercise exercise = new Exercise();
+    private Exercise convertToExercise(ExerciseDTO exerciseDTO, Exercise exercise){
+
 
         exercise.setId(exerciseDTO.getId());
         exercise.setData_add(exerciseDTO.getData_add());
@@ -95,7 +95,13 @@ public class ExerciseService {
     }
 
     public void saveExercise(ExerciseDTO exerciseDTO, Long trainingId) {
-        Exercise exercise = convertToExercise(exerciseDTO);
+        Exercise exercise;
+        if( exerciseDTO.getId()== null){
+            exercise = convertToExercise(exerciseDTO, new Exercise());
+        }else {
+            exercise = convertToExercise(exerciseDTO, exerciseRepository.findFirstById(exerciseDTO.getId()));
+        }
+
         if(trainingId != null) exercise.setTraining(trainingRepository.findFirstById(trainingId));
         exerciseRepository.save(exercise);
     }

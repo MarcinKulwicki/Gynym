@@ -39,6 +39,9 @@
                         <a href="${pageContext.request.contextPath}/exercise/${tmp.id}">${tmp.name} -> </a>
                     </li>
                 </h5>
+                <c:forEach items="${tmp.exerciseDTOList}" var="exercise">
+                    || ${exercise.name}
+                </c:forEach>||
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/training/edit/${tmp.id}">Edit</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/training/delete/${tmp.id}">Delete</a>
             </c:forEach>
