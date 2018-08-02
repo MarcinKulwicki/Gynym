@@ -61,7 +61,14 @@
                     <tbody>
                     <c:forEach items="${body}" var="tmp">
                     <tr>
-                        <td>${tmp.flag} ${tmp}</td>
+                        <td>
+                                <c:if test="${tmp.flag == 'target'}">
+                                    <span style="color: magenta; ">${tmp.flag}</span> <br/>
+                                </c:if>
+                                <c:if test="${tmp.flag == 'start'}">
+                                    <span style="color: magenta; ">${tmp.flag}</span> <br/>
+                                </c:if>
+                                ${tmp.data_mod}</td>
                         <td>${tmp.hight}</td>
                         <td>${tmp.weight}</td>
                         <td>${tmp.bicepsLeft}</td>

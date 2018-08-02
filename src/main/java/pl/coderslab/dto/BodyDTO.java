@@ -1,32 +1,19 @@
-package pl.coderslab.entity;
-
+package pl.coderslab.dto;
 
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import pl.coderslab.entity.User;
 
-import javax.persistence.*;
 import java.sql.Timestamp;
-import java.time.LocalDateTime;
-import java.util.List;
 
-@Entity
-@Table(name = "body")
-public class Body {
+public class BodyDTO {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private Long id;
 
-    //Kontrola Bazy danych
-    @CreationTimestamp
     Timestamp data_add;
-    @UpdateTimestamp
     Timestamp data_mod;
-    @Version
     Long idv;
-
-
-    @ManyToOne
     private User user;
 
     private Long weight;
@@ -42,18 +29,19 @@ public class Body {
     private Long calfLeft;
     private Long calfRight;
 
-
-
-    // 'now' - actual body
-    // 'start' - start body
-    // 'target' - target body
     private String flag;
 
 
-
-    public Body(){
+    public BodyDTO(){
         flag = "stat";
+    }
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public Timestamp getData_add() {
@@ -62,6 +50,10 @@ public class Body {
 
     public void setData_add(Timestamp data_add) {
         this.data_add = data_add;
+    }
+
+    public Timestamp getData_mod() {
+        return data_mod;
     }
 
     public void setData_mod(Timestamp data_mod) {
@@ -74,14 +66,6 @@ public class Body {
 
     public void setIdv(Long idv) {
         this.idv = idv;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public User getUser() {
@@ -186,14 +170,5 @@ public class Body {
 
     public void setFlag(String flag) {
         this.flag = flag;
-    }
-
-    public Timestamp getData_mod() {
-        return data_mod;
-    }
-
-    @Override
-    public String toString() {
-        return data_mod.toLocalDateTime().getYear()+":"+data_mod.toLocalDateTime().getMonth()+":"+data_mod.toLocalDateTime().getDayOfMonth();
     }
 }

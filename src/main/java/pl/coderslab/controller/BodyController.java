@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import pl.coderslab.dto.BodyDTO;
 import pl.coderslab.entity.Body;
 import pl.coderslab.entity.User;
 import pl.coderslab.repository.BodyRepository;
@@ -34,88 +35,87 @@ public class BodyController {
     HttpSession sess;
 
     @GetMapping("")
-    public String list(Model model, HttpServletRequest request){
+    public String list(Model model){
 
-        sess = request.getSession();
         User user = (User) sess.getAttribute("UserLogged");
         //BENG!
-        List<Body> body = bodyRepository.findAllByUser_Id(user.getId());
-        body.sort(Comparator.comparing(Body::getData_mod));
+        List<BodyDTO> bodyDTOList = bodyService.findAllByUserId(user.getId());
+        bodyDTOList.sort(Comparator.comparing(BodyDTO::getData_mod));
+
         Long[] progress = bodyService.getProgressBarForCategory("",bodyService.getTargetNowAndStartPointBody(user.getId()));
         model.addAttribute("start", progress[0]);
         model.addAttribute("now", progress[1]);
         model.addAttribute("end", progress[2]);
         model.addAttribute("proc", progress[3]);
-        model.addAttribute("body", body);
+        model.addAttribute("body", bodyDTOList);
         return "body/list";
     }
 
     @GetMapping("/{name}")
-    public String list(Model model, HttpServletRequest request, @PathVariable String name){
+    public String list(Model model, @PathVariable String name){
 
-        sess = request.getSession();
         User user = (User) sess.getAttribute("UserLogged");
         //BENG!
-        List<Body> body = bodyRepository.findAllByUser_Id(user.getId());
-        body.sort(Comparator.comparing(Body::getData_mod));
-        //TODO model to progress bar
+        List<BodyDTO> bodyDTOList = bodyService.findAllByUserId(user.getId());
+        bodyDTOList.sort(Comparator.comparing(BodyDTO::getData_mod));
+
         Long[] progress = bodyService.getProgressBarForCategory(name,bodyService.getTargetNowAndStartPointBody(user.getId()));
         model.addAttribute("start", progress[0]);
         model.addAttribute("now", progress[1]);
         model.addAttribute("end", progress[2]);
         model.addAttribute("proc", progress[3]);
-        model.addAttribute("body", body);
+        model.addAttribute("body", bodyDTOList);
         return "body/list";
     }
 
     @GetMapping("/add")
     public String add(Model model, HttpServletRequest request){
-        model.addAttribute("body", bodyService.getNewBodyOrLatest(request));
+        User user = userService.getUserFromSession(request);
+        model.addAttribute("body", bodyService.getNewBodyOrLatest(user.getId()));
         return "body/form";
     }
     @PostMapping("/add")
-    public String add(@Valid Body body, BindingResult bindingResult, HttpServletRequest request){
+    public String add(@Valid BodyDTO bodyDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            sess = request.getSession();
             User user = (User)sess.getAttribute("UserLogged");
-            body.setUser(user);
-            bodyRepository.save(body);
+            bodyService.saveBody(bodyDTO, user.getId());
         }
         return "redirect:/body";
     }
     @GetMapping("/target")
-    public String target(Model model, HttpServletRequest request){
-        model.addAttribute("body", bodyService.getNewTargetOrLatest(request));
+    public String target(Model model){
+        User user = (User)sess.getAttribute("UserLogged");
+        BodyDTO bodyDTO = bodyService.getNewTargetOrLatest(user.getId());
+        model.addAttribute("body",bodyDTO);
         return "body/form";
     }
     @PostMapping("/target")
-    public String target(@Valid Body body, BindingResult bindingResult, HttpServletRequest request){
+    public String target(@Valid BodyDTO bodyDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            sess = request.getSession();
-            body.setUser((User) sess.getAttribute("UserLogged"));
-            body = bodyService.addOrEditTarget(body);
-            bodyRepository.save(body);
+
+            User user = (User) sess.getAttribute("UserLogged");
+            bodyService.addOrEditTarget(bodyDTO, user.getId());
         }
         return "redirect:/body";
     }
     @GetMapping("/start")
-    public String start(Model model, HttpServletRequest request){
-        model.addAttribute("body", bodyService.getNewStartOrLatest(request));
+    public String start(Model model){
+        User user = (User)sess.getAttribute("UserLogged");
+        BodyDTO bodyDTO = bodyService.getNewStartOrLatest(user.getId());
+        model.addAttribute("body", bodyDTO);
         return "body/form";
     }
     @PostMapping("/start")
-    public String start(@Valid Body body, BindingResult bindingResult, HttpServletRequest request){
+    public String start(@Valid BodyDTO bodyDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            sess = request.getSession();
-            body.setUser((User) sess.getAttribute("UserLogged"));
-            body = bodyService.addOrEditStart(body);
-            bodyRepository.save(body);
+            User user = (User) sess.getAttribute("UserLogged");
+            bodyService.addOrEditStart(bodyDTO, user.getId());
         }
         return "redirect:/body";
     }
     @GetMapping("/delete/{id}")
     public String delete(@PathVariable Long id){
-        bodyRepository.delete(bodyRepository.findFirstById(id));
+        bodyService.deleteBody(id);
         return "redirect:/body";
     }
 }

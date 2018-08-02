@@ -13,12 +13,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-    @Autowired
-    HomeService homeService;
-    @Autowired
-    HttpSession sess;
-
-
     @GetMapping("")
     public String list(){
         return "home";
@@ -31,8 +25,8 @@ public class HomeController {
         } catch (ServletException e) {
             System.out.println("Cannot logout");
         }
-        sess = request.getSession();
-        sess.invalidate();
+        HttpSession session = request.getSession();
+        session.invalidate();
         return "redirect:/user";
     }
 }
