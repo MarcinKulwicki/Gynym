@@ -11,11 +11,13 @@ import pl.coderslab.repository.UserRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 @Component
+//@Transactional //rozwiazuje problem Lazy
 public class TrainingService {
 
     @Autowired
@@ -50,6 +52,7 @@ public class TrainingService {
 
         sess.setAttribute("trainingId", id);
     }
+
     public Long getTrainingIdFromSession(HttpServletRequest request){
         sess = request.getSession();
         Long tmp = (Long) sess.getAttribute("trainingId");
