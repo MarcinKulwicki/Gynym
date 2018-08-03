@@ -28,6 +28,7 @@
         Body
     </div>
 <form:form method="post" modelAttribute="exercise">
+    <form:errors path="*"/><br/>
     <form:input path="name" placeholder="Name exercise"/>
     <form:input path="description" placeholder="Description"/>
     <form:input path="recommend" placeholder="Recommend"/>

@@ -5,6 +5,8 @@ package pl.coderslab.dto;
 import pl.coderslab.entity.Body;
 import pl.coderslab.entity.Training;
 
+import javax.validation.Valid;
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 import java.util.List;
 
@@ -17,8 +19,11 @@ public class UserDTO {
     private Timestamp data_mod;
     private Long idv;
 
+    @Size(min = 3 , max = 30)
     private String username;
+    @Size(min = 3 , max = 100)
     private String email;
+    @Size(min = 3)
     private String password;
 
     private List<BodyDTO> bodyDTOList;

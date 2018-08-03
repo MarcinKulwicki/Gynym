@@ -28,6 +28,7 @@
         Body
     </div>
 <form:form method="post" modelAttribute="body">
+    <form:errors path="*"/><br/>
     Height:<form:input path="hight" placeholder="Height in cm"/><br/>
     Weight:<form:input path="weight" placeholder="Weight in kg"/>
     Biceps Left:<form:input path="bicepsLeft" placeholder="Biceps Left in cm"/>

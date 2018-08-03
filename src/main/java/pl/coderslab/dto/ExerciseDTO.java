@@ -2,6 +2,7 @@ package pl.coderslab.dto;
 
 import pl.coderslab.entity.Training;
 
+import javax.validation.constraints.Size;
 import java.sql.Timestamp;
 
 public class ExerciseDTO {
@@ -11,7 +12,9 @@ public class ExerciseDTO {
     Long idv;
 
     private TrainingDTO trainingDTO;
+    @Size(min = 3)
     private String name;
+    @Size(min = 3)
     private String description;
     private String recommend;
 

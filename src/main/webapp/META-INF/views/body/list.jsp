@@ -28,12 +28,13 @@
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/start">Change Start</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/changePassword">Change Password</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/delete">Delete User</a>
         </ul>
     </div>
 
     <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="${now}" aria-valuemin="${start}" aria-valuemax="${end}" style="width: ${proc}%"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="${now}" aria-valuemin="${start}" aria-valuemax="${end}" style="width: ${proc}%"></div>
     </div>
 
     <div class="card-body">
