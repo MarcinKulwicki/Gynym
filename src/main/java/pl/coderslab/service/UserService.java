@@ -71,19 +71,6 @@ public class UserService {
         return false;
     }
 
-    public Long getUserIdFromSession(HttpServletRequest request){
-        User user = getUserFromSession(request);
-        if(user!=null){
-            return user.getId();
-        }
-        return 0L;
-    }
-    public User getUserFromSession(HttpServletRequest request){
-        sess = request.getSession();
-        User user = (User)sess.getAttribute("UserLogged");
-        return user;
-    }
-
     public void removeUser(UserDTO userDTO) {
         User user = userRepository.findFirstByUsername(userDTO.getUsername());
         if(user != null){

@@ -26,31 +26,6 @@ public class BodyService {
     UserRepository userRepository;
 
 
-
-    public boolean saveTargetBodyToUserInDb(Body body, HttpServletRequest request){
-
-
-        body.setUser(userService.getUserFromSession(request));
-        if(body.getUser() != null){
-            Body bodyInDb = bodyRepository.findFirstByUser_IdAndFlagLikeTarget(body.getUser().getId());
-            if(bodyInDb != null){
-                bodyInDb.setBicepsLeft(body.getBicepsLeft());
-                bodyInDb.setBicepsRight(body.getCalfRight());
-                bodyInDb.setCalfLeft(body.getCalfLeft());
-                bodyInDb.setCalfRight(body.getCalfRight());
-                bodyInDb.setChest(body.getChest());
-                bodyInDb.setHight(body.getHight());
-                bodyInDb.setWeight(body.getWeight());
-                bodyInDb.setWaist(body.getWaist());
-                bodyInDb.setThighLeft(body.getThighLeft());
-                bodyInDb.setThighRight(body.getThighRight());
-                bodyInDb.setHips(body.getHips());
-            }
-            bodyRepository.save(bodyInDb);
-            return true;
-        }
-        return false;
-    }
     public BodyDTO getNewTargetOrLatest(Long id){
 
         Body body = bodyRepository.findFirstByUser_IdAndFlagLikeTarget(id);
