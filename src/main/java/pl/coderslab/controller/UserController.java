@@ -58,23 +58,20 @@ public class UserController {
     }
     @GetMapping("/forgotPassword")
     public String forgot(Model model){
-        model.addAttribute("user", new User());
+        model.addAttribute("user", new UserDTO());
         return "user/forgotPassword";
     }
     @PostMapping("/forgotPassword")
-    public String forgot(@Valid User user, BindingResult bindingResult){
+    public String forgot(@Valid UserDTO userDTO, BindingResult bindingResult){
         if(!bindingResult.hasErrors()){
-            userService.editUserInDb(user);
+            userService.editUserInDb(userDTO);
         }
         return "redirect:/user";
     }
     @GetMapping("/delete")
-    public String edit(HttpServletRequest request){
-        sess = request.getSession();
-        User user = (User) sess.getAttribute("UserLogged");
-        User userInBase = userRepository.findFirstByUsername(user.getUsername());
-        userInBase.setUsername("non");
-        userRepository.save(userInBase);
+    public String edit(){
+        UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
+        userService.removeUser(userDTO);
         sess.invalidate();
         return "redirect:/";
     }

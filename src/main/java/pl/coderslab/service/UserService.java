@@ -38,7 +38,7 @@ public class UserService {
     }
     public void saveToDb(UserDTO userDTO){
         User user = userRepository.findFirstByUsername(userDTO.getUsername());
-        if(user.getUsername() == null){
+        if(user== null){
 
             String password = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
             userDTO.setPassword(password);
@@ -58,12 +58,13 @@ public class UserService {
         return user;
     }
 
-    public boolean editUserInDb(User user){
-        User userInDb = userRepository.findFirstByUsername(user.getUsername());
-        if(userInDb.getEmail().equals(user.getEmail())){
-            String password = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
-            userInDb.setPassword(password);
-            userRepository.save(userInDb);
+    public boolean editUserInDb(UserDTO userDTO){
+
+        User user = userRepository.findFirstByUsername(userDTO.getUsername());
+        if(user.getEmail().equals(userDTO.getEmail())){
+            String password = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
+            user.setPassword(password);
+            userRepository.save(user);
             return true;
         }
 
@@ -81,5 +82,14 @@ public class UserService {
         sess = request.getSession();
         User user = (User)sess.getAttribute("UserLogged");
         return user;
+    }
+
+    public void removeUser(UserDTO userDTO) {
+        User user = userRepository.findFirstByUsername(userDTO.getUsername());
+        if(user != null){
+            user.setUsername(BCrypt.hashpw("non", BCrypt.gensalt()));
+            user.setEmail(BCrypt.hashpw("non", BCrypt.gensalt()));
+            userRepository.save(user);
+        }
     }
 }
