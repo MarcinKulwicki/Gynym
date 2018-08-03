@@ -2,6 +2,7 @@ package pl.coderslab.service;
 
 import org.mindrot.jbcrypt.BCrypt;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 import pl.coderslab.dto.UserDTO;
 import pl.coderslab.entity.User;
@@ -10,6 +11,7 @@ import pl.coderslab.repository.UserRepository;
 import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.Random;
 
 @Component
 public class UserService {
@@ -28,7 +30,8 @@ public class UserService {
 
         User user = userRepository.findFirstByUsername(userDTO.getUsername());
         if(user != null) {
-            if (BCrypt.checkpw(userDTO.getPassword(), user.getPassword())) {
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            if(encoder.matches(userDTO.getPassword(), user.getPassword())) {
                 userDTO.setId(user.getId());
                 sess.setAttribute("UserLogged", userDTO);
                 return true;
@@ -40,7 +43,8 @@ public class UserService {
         User user = userRepository.findFirstByUsername(userDTO.getUsername());
         if(user== null){
 
-            String password = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            String password = encoder.encode(userDTO.getPassword());
             userDTO.setPassword(password);
             userRepository.save(convertToUser(userDTO, new User()));
         }
@@ -54,29 +58,49 @@ public class UserService {
         user.setIdv(userDTO.getIdv());
         user.setUsername(userDTO.getUsername());
         user.setPassword(userDTO.getPassword());
-        user.setEmail(userDTO.getPassword());
+        user.setEmail(userDTO.getEmail());
         return user;
     }
 
-    public boolean editUserInDb(UserDTO userDTO){
+    public String editUserInDb(UserDTO userDTO){
 
         User user = userRepository.findFirstByUsername(userDTO.getUsername());
         if(user.getEmail().equals(userDTO.getEmail())){
-            String password = BCrypt.hashpw(userDTO.getPassword(), BCrypt.gensalt());
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+
+            Random random = new Random();
+            int rand = random.nextInt(200000)+200000;
+
+            String password = encoder.encode(rand+"");
             user.setPassword(password);
             userRepository.save(user);
-            return true;
+            return rand+"";
         }
 
-        return false;
+        return null;
     }
 
     public void removeUser(UserDTO userDTO) {
         User user = userRepository.findFirstByUsername(userDTO.getUsername());
         if(user != null){
-            user.setUsername(BCrypt.hashpw("non", BCrypt.gensalt()));
-            user.setEmail(BCrypt.hashpw("non", BCrypt.gensalt()));
+            BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+            user.setUsername(encoder.encode("non"));
+            user.setEmail(encoder.encode("non"));
             userRepository.save(user);
         }
+    }
+
+    public void changePassword(String oldPassword, String newPassword1, String newPassword2, UserDTO userDTO) {
+
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        User user = userRepository.findFirstByUsername(userDTO.getUsername());
+
+        if(encoder.matches(oldPassword,user.getPassword())){
+            if(newPassword1.equals(newPassword2));
+
+            user.setPassword(encoder.encode(newPassword1));
+            userRepository.save(user);
+        }
+
     }
 }

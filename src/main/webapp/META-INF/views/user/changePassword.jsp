@@ -1,10 +1,9 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%--
   Created by IntelliJ IDEA.
   User: wdr434
-  Date: 31.07.18
-  Time: 10:30
+  Date: 03.08.18
+  Time: 10:48
   To change this template use File | Settings | File Templates.
 --%>
 <!doctype html>
@@ -18,24 +17,19 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
 
-    <title>Forgot Password</title>
+    <title>Change Password</title>
 </head>
 <body>
+
 <c:import url="../fragments/header.jsp"/>
 <style><%@include file="/META-INF/views/style.css"%></style>
 
-<div>
-    <div class="card-header">
-        Forgot Password
-    </div>
-    <div class="card-body">
-        <form:form method="post" modelAttribute="user">
-            <form:input path="username" placeholder="Username"/>
-            <form:input path="email" placeholder="e-Mail"/>
-            <input type="submit" value="Change password">
-        </form:form>
-    </div>
-</div>
+<form method="post">
+    <input type="text" name="oldPassword" placeholder="Old Password">
+    <input type="password" name="newPassword1" placeholder="New Password">
+    <input type="password" name="newPassword2" placeholder="New Password">
+    <input type="submit" value="Change Password">
+</form>
 
 
 <!-- Optional JavaScript -->

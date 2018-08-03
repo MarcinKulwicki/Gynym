@@ -28,6 +28,7 @@
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/add">Add Body</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/target">Change Target</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/body/start">Change Start</a>
+                <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/changePassword">Change Password</a>
                 <a class="nav-link disabled" href="${pageContext.request.contextPath}/user/delete">Delete User</a>
         </ul>
     </div>
