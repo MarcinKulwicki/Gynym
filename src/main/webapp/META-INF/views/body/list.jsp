@@ -34,7 +34,7 @@
     </div>
 
     <div class="progress">
-        <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="${now}" aria-valuemin="${start}" aria-valuemax="${end}" style="width: ${proc}%"></div>
+        <div class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" aria-valuenow="${now}" aria-valuemin="${start}" aria-valuemax="${end}" style="width: ${proc}%"></div>
     </div>
 
     <div class="card-body">

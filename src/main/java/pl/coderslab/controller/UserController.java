@@ -72,6 +72,7 @@ public class UserController {
         if(!bindingResult.hasErrors()){
 
             String email = userDTO.getEmail();
+            //TODO if you delete email = "kulwik@gmail.com"; it will work for E-mail in form
             email = "kulwik@gmail.com";
             MimeMessage message = emailSender.createMimeMessage();
             boolean multipart = true;
