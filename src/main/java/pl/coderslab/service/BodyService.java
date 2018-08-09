@@ -216,6 +216,8 @@ public class BodyService {
         bodyDTO.setThighRight(body.getThighRight());
         bodyDTO.setWaist(body.getWaist());
         bodyDTO.setWeight(body.getWeight());
+        //TODO check
+        bodyDTO.setUser(userService.convertToUserDTO(body.getUser()));
 
         return bodyDTO;
     }

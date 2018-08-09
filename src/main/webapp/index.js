@@ -22,7 +22,14 @@ function showBody() {
 
         for(let body of bodies){
             var elemList = $("<p style=\"border: solid black 1px\">");
-            let bicepsLeft = $("<p>").append(body.bicepsLeft)
+            let bicepsLeft = $("<p>")
+                .append(body.user.email)
+                .append(" : ")
+                .append(body.weight)
+                .append("kg : ")
+                .append(body.hight)
+                .append("cm : ")
+                .append(body.bicepsLeft)
                 .append(" : ")
                 .append(body.bicepsRight);
 

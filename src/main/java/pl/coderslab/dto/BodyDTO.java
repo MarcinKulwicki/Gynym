@@ -14,7 +14,7 @@ public class BodyDTO {
     Timestamp data_add;
     Timestamp data_mod;
     Long idv;
-    private User user;
+    private UserDTO user;
 
     private Long weight;
     private Long hight;
@@ -68,11 +68,11 @@ public class BodyDTO {
         this.idv = idv;
     }
 
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 
