@@ -33,22 +33,43 @@ function showBody() {
         let list = $("#listBodies");
         list.empty();
 
+        let elemList = $("<p style=\"border: solid black 1px\">");
+        list.append("<table><thead><tr>" +
+            "<th>Date</th>" +
+            "<th>Height</th>" +
+            "<th>Weight</th>" +
+            "<th>BicepsLeft</th>" +
+            "<th>BicepsRight</th>" +
+            "<th>Chest</th>" +
+            "<th>Waist</th>" +
+            "<th>Hips</th>" +
+            "<th>ThighLeft</th>" +
+            "<th>ThighRight</th>" +
+            "<th>CalfLeft</th>" +
+            "<th>CalfRight</th>" +
+            "</tr></thead><tbody id='bodyTable'>");
         for(let body of bodies){
-            let elemList = $("<p style=\"border: solid black 1px\">");
-            let bicepsLeft = $("<p>")
-                .append(body.user.email)
-                .append(" : ")
-                .append(body.weight)
-                .append("kg : ")
-                .append(body.hight)
-                .append("cm : ")
-                .append(body.bicepsLeft)
-                .append(" : ")
-                .append(body.bicepsRight);
 
-            elemList.append(bicepsLeft);
-            list.append(elemList);
+            $('#bodyTable').append(
+                "<tr>" +
+                "<td>"+body.modDate+"</td>" +
+                "<td>"+body.hight+"</td>" +
+                "<td>"+body.weight+"</td>" +
+                "<td>"+body.bicepsLeft+"</td>" +
+                "<td>"+body.bicepsRight+"</td>" +
+                "<td>"+body.chest+"</td>" +
+                "<td>"+body.waist+"</td>" +
+                "<td>"+body.hips+"</td>" +
+                "<td>"+body.thighLeft+"</td>" +
+                "<td>"+body.thighRight+"</td>" +
+                "<td>"+body.calfLeft+"</td>" +
+                "<td>"+body.calfRight+"</td>" +
+                "</tr>"
+                )
         }
+
+        list.append(elemList);
+        list.append("</tbody>").append("</table>");
     }
 }
 function showTraining() {

@@ -31,10 +31,18 @@ public class BodyDTO {
 
     private String flag;
 
+    private String modDate;
+
 
     public BodyDTO(){
         flag = "stat";
     }
+
+    public String getModDate() {
+        return data_mod.toLocalDateTime().toString()+flag;
+    }
+
+
 
     public Long getId() {
         return id;
