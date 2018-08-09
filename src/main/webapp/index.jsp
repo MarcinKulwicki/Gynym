@@ -16,9 +16,15 @@
 </head>
 <body>
 
+<button id="buttonBody">Body</button>
+<button id="buttonTraining">Training</button>
+
 <h1>List bodies</h1>
-<div id="listBodies">
-<p>helo</p>
+<div id="listBodies" class="context">
+</div>
+<h1>List training</h1>
+<div id="listTraining" class="context">
+
 </div>
 
 </body>
