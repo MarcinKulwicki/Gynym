@@ -93,19 +93,40 @@ function showTraining() {
             for(let exercise of training.exerciseDTOList){
                 elemList.append(exercise.name);
 
-                var buttonChoise = $("<button>").data(exercise).text("Take")
+                let buttonChoise = $("<button>").data(exercise).text("Take")
                     .on("click", function () {
-                        elemList.append("<p>")
-                            .append(exercise.name).append(" - ")
-                            .append(exercise.description).append(" - ")
-                            .append(exercise.recommend).append(" - ")
-                            .append(exercise.series).append(" - ")
-                            .append(exercise.repeats).append(" - ")
-                    })
+                        elemList.append(
+                            "<p class='additionalList'>"+ exercise.name+" - "+
+                            +exercise.description+" - "+
+                            +exercise.recommend+" - "+
+                            +exercise.series+" - "+
+                            +exercise.repeats+" - "
+                    );
+                    });
                 elemList.append(buttonChoise).append(" / ");
             }
+
+            let buttonClear = $("<button>").text("Clear")
+                .on("click", function () {
+                    elemList.find(".additionalList").remove();
+                });
+            elemList.append(buttonClear);
             list.append(elemList);
         }
+
+        let formAdd = $("<p style=\"border: solid black 1px\">");
+        let buttonAdd = $("<button id='addButton'>").text("Add New")
+            .on("click", function () {
+                formAdd.append(""+
+                    "<input type='text' placeholder='Name of Training'>"+
+                    "<button id='newTraining'>Add");
+
+
+
+            });
+        list.append(formAdd);
+        list.append(buttonAdd);
+
 
     }
 
