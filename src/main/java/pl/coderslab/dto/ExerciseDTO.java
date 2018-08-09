@@ -27,6 +27,7 @@ public class ExerciseDTO {
 
     }
 
+
     public Long getId() {
         return id;
     }

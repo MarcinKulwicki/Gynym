@@ -70,8 +70,18 @@ function showTraining() {
             elemList.append("<p>").append(training.name);
             elemList.append("<p>");
             for(let exercise of training.exerciseDTOList){
-                elemList.append(exercise.name).append(" : ");
-                elemList.append(exercise.description).append(" / ");
+                elemList.append(exercise.name);
+
+                var buttonChoise = $("<button>").data(exercise).text("Take")
+                    .on("click", function () {
+                        elemList.append("<p>")
+                            .append(exercise.name).append(" - ")
+                            .append(exercise.description).append(" - ")
+                            .append(exercise.recommend).append(" - ")
+                            .append(exercise.series).append(" - ")
+                            .append(exercise.repeats).append(" - ")
+                    })
+                elemList.append(buttonChoise).append(" / ");
             }
             list.append(elemList);
         }
