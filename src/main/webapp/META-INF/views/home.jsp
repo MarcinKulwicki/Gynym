@@ -21,12 +21,14 @@
 </head>
 <body>
 <c:import url="fragments/header.jsp"/>
+<style><%@include file="/META-INF/views/homeStyle.css"%></style>
 
 <div>
     <div class="card-header">
         Home
     </div>
 
+    <div class="content">
     <h2>Staying fit: a question of attitude</h2>
 
     <div>In a performance-driven society that is in constant search of eternal youth, some people may find it difficult to note the effects that time has on their body. A changing figure, the appearance of wrinkles, fading hair colour, etc. Beyond these physical signs indicating that you are getting older and wiser, you may notice other changes as well: decreased energy or endurance, altered sleep, onset of health problems, etc.</div>
@@ -63,6 +65,7 @@
     </ul>
     <div>Speak to your pharmacist for additional information or advice on the ways to stay fit and healthy at any age.</div>
 
+    </div>
 </div>
 
 <!-- Optional JavaScript -->

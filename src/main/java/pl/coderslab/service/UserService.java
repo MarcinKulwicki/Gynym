@@ -71,6 +71,7 @@ public class UserService {
             Random random = new Random();
             int rand = random.nextInt(200000)+200000;
 
+
             String password = encoder.encode(rand+"");
             user.setPassword(password);
             userRepository.save(user);
