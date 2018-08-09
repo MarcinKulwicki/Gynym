@@ -14,7 +14,7 @@ public class BodyDTO {
     Timestamp data_add;
     Timestamp data_mod;
     Long idv;
-    private User user;
+    private UserDTO user;
 
     private Long weight;
     private Long hight;
@@ -31,10 +31,18 @@ public class BodyDTO {
 
     private String flag;
 
+    private String modDate;
+
 
     public BodyDTO(){
         flag = "stat";
     }
+
+    public String getModDate() {
+        return data_mod.toLocalDateTime().toString()+flag;
+    }
+
+
 
     public Long getId() {
         return id;
@@ -68,11 +76,11 @@ public class BodyDTO {
         this.idv = idv;
     }
 
-    public User getUser() {
+    public UserDTO getUser() {
         return user;
     }
 
-    public void setUser(User user) {
+    public void setUser(UserDTO user) {
         this.user = user;
     }
 

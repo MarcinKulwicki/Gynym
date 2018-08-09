@@ -104,4 +104,5 @@ public class UserDTO {
     public void setTrainingDTOList(List<TrainingDTO> trainingDTOList) {
         this.trainingDTOList = trainingDTOList;
     }
+
 }

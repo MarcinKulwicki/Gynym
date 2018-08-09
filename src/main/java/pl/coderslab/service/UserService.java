@@ -71,6 +71,7 @@ public class UserService {
             Random random = new Random();
             int rand = random.nextInt(200000)+200000;
 
+
             String password = encoder.encode(rand+"");
             user.setPassword(password);
             userRepository.save(user);
@@ -102,5 +103,18 @@ public class UserService {
             userRepository.save(user);
         }
 
+    }
+
+    public UserDTO convertToUserDTO(User user) {
+        UserDTO userDTO= new UserDTO();
+
+        userDTO.setId(user.getId());
+        userDTO.setData_add(user.getData_add());
+        userDTO.setData_mod(user.getData_mod());
+        userDTO.setIdv(user.getIdv());
+        userDTO.setUsername(user.getUsername());
+        userDTO.setPassword(user.getPassword());
+        userDTO.setEmail(user.getEmail());
+        return userDTO;
     }
 }
