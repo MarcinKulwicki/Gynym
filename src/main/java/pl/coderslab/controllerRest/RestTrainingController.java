@@ -37,6 +37,5 @@ public class RestTrainingController {
     public void add(@RequestBody TrainingDTO trainingDTO){
             UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
             trainingService.saveTraining(trainingDTO, userDTO.getId());
-
     }
 }

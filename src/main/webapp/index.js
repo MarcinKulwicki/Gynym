@@ -1,9 +1,10 @@
 function TrainingDTO(name){
     this.name = name;
 }
-function ExerciseDTO(name, description){
+function ExerciseDTO(name, description , trainingID){
     this.name = name;
     this.description = description;
+    this.trainingID = trainingID;
 }
 
 $(function () {
@@ -136,7 +137,8 @@ function showTraining() {
 
                         let exercise = new ExerciseDTO(
                             $("#exerciseName").val(),
-                            $("#exerciseDescription").val()
+                            $("#exerciseDescription").val(),
+                            training.id
                         );
 
                         $.ajax({

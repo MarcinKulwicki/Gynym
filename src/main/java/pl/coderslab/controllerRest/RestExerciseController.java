@@ -31,7 +31,7 @@ public class RestExerciseController {
     @PostMapping("")
     public void add(@RequestBody ExerciseDTO exerciseDTO){
 
-            Long trainingId = (Long) sess.getAttribute("trainingId");
+            Long trainingId = exerciseDTO.getTrainingID();
             exerciseService.saveExercise(exerciseDTO, trainingId);
     }
 }
