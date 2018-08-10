@@ -1,6 +1,10 @@
 function TrainingDTO(name){
     this.name = name;
 }
+function ExerciseDTO(name, description){
+    this.name = name;
+    this.description = description;
+}
 
 $(function () {
 
@@ -116,7 +120,49 @@ function showTraining() {
                 .on("click", function () {
                     elemList.find(".additionalList").remove();
                 });
+            let formAdd = $("<p style=\"border: solid black 0px\">");
+            let buttonAddExercise = $("<button id='addButton'>").text("Add New")
+                .on("click", function () {
+                    formAdd.append(""+
+                        "<form method='post'>"+
+                        "<input type='text' placeholder='name' id='exerciseName'>"+
+                        "<input type='text' placeholder='description' id='exerciseDescription'>"+
+                        "<input type='submit' id='sub' value='Add'>"+
+                        "</form>"
+                    );
+
+                    let subClick = $("#sub");
+                    subClick.on("click", function (event) {
+
+                        let exercise = new ExerciseDTO(
+                            $("#exerciseName").val(),
+                            $("#exerciseDescription").val()
+                        );
+
+                        $.ajax({
+                            headers: {
+                                'Content-Type': 'application/json'
+                            },
+                            url: "/exerciseRest",
+                            data: JSON.stringify(
+                                exercise
+                            ),
+                            type: "POST",
+                            dataType : "json",
+                            success: showTraining,
+                            error: function( xhr, status,
+                                             errorThrown ) {},
+                            complete: function( xhr, status ){showTraining()}
+                        });
+                        event.preventDefault();
+
+                    });
+                });
+
+
+            elemList.append(buttonAddExercise);
             elemList.append(buttonClear);
+            elemList.append(formAdd);
             list.append(elemList);
         }
 

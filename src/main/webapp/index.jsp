@@ -26,10 +26,5 @@
 <div id="listTraining" class="context">
 </div>
 
-<%--<form method="post" hidden>--%>
-    <%--<input type="text" id="trainingName" placeholder="Name of Training">--%>
-    <%--<input type="submit" id="sub" value="Add">--%>
-<%--</form>--%>
-
 </body>
 </html>
