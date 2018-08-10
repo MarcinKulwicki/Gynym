@@ -23,10 +23,27 @@ public class ExerciseDTO {
     private Long weight;
     private Long time;
 
+    private Long trainingID;
+
     public ExerciseDTO(){
 
     }
 
+    public ExerciseDTO(String name, String description, Long trainingID) {
+        this.name = name;
+        this.description = description;
+        this.trainingID = trainingID;
+
+    }
+
+
+    public Long getTrainingID() {
+        return trainingID;
+    }
+
+    public void setTrainingID(Long trainingID) {
+        this.trainingID = trainingID;
+    }
 
     public Long getId() {
         return id;

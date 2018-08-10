@@ -24,7 +24,6 @@
 </div>
 <h1>List training</h1>
 <div id="listTraining" class="context">
-
 </div>
 
 </body>
