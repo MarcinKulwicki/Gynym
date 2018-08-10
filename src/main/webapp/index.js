@@ -1,3 +1,7 @@
+function TrainingDTO(name){
+    this.name = name;
+}
+
 $(function () {
 
 
@@ -15,7 +19,9 @@ $(function () {
         list.empty();
         showTraining();
 
+
     });
+
 });
 
 
@@ -118,10 +124,37 @@ function showTraining() {
         let buttonAdd = $("<button id='addButton'>").text("Add New")
             .on("click", function () {
                 formAdd.append(""+
-                    "<input type='text' placeholder='Name of Training'>"+
-                    "<button id='newTraining'>Add");
+                    "<form method='post'>"+
+                    "<input type='text' id='trainingName' placeholder='Name of Training'>"+
+                    "<input type='submit' value='Add' id='sub'>"+
+                    "</form>");
 
+                let subClick = $("#sub");
+                subClick.on("click", function (event) {
 
+                    let training = new TrainingDTO(
+                        $("#trainingName").val()
+                    );
+                    event.preventDefault();
+
+                    $.ajax({
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        url: "/trainingRest",
+                        data: JSON.stringify(
+                            training
+                        ),
+                        type: "POST",
+                        dataType : "json",
+                        success: showTraining,
+                        error: function( xhr, status,
+                                         errorThrown ) {},
+                        complete: function( xhr, status ){showTraining()}
+                    });
+                    event.preventDefault();
+
+                });
 
             });
         list.append(formAdd);
