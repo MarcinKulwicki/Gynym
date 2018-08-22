@@ -94,6 +94,17 @@ function deleteExercise(id){
         complete: function( xhr, status ){showTraining()}
     });
 }
+function deleteTraining(id){
+    $.ajax({
+        url: "/trainingRest/"+id,
+        data: {},
+        type: "DELETE",
+        contentType: 'application/json; charset=utf-8',
+        dataType : "json",
+        success: showTraining,
+        complete: function( xhr, status ){showTraining()}
+    });
+}
 
 function showTraining() {
     $.ajax({
@@ -111,7 +122,13 @@ function showTraining() {
 
         for(let training of trainings){
             let elemList = $("<p style=\"border: solid black 1px\">");
-            elemList.append("<p>").append(training.name);
+
+            let buttonRemoveTraining = $("<button>").data(training).text("Delete")
+                .on("click", function () {
+                    deleteTraining(training.id);
+                });
+
+            elemList.append("<p>").append(training.name).append(" / "). append(buttonRemoveTraining);
             elemList.append("<p>");
             for(let exercise of training.exerciseDTOList){
                 elemList.append(exercise.name);

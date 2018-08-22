@@ -38,4 +38,9 @@ public class RestTrainingController {
             UserDTO userDTO = (UserDTO) sess.getAttribute("UserLogged");
             trainingService.saveTraining(trainingDTO, userDTO.getId());
     }
+
+    @DeleteMapping("/{id}")
+    public void delete(@PathVariable Long id){
+        trainingService.deleteTraining(id);
+    }
 }

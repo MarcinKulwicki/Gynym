@@ -17,22 +17,26 @@ function logged(){
         $("#formLogin").show();
         $("#logout").hide();
 
-        function logout(){
-            $.ajax({
-                url: "/userRest/logout",
-                data: {},
-                type: "GET",
-                dataType : "json",
-            });
-        }
+        logout();
     });
 
 
     login.append(buttonLogout);
 }
 
+function logout(){
+    $.ajax({
+        url: "/userRest/logout",
+        data: {},
+        type: "GET",
+        dataType : "json",
+    });
+}
+
 $(function () {
 
+
+    logout();
 
     let loginButton = $("#loginButton");
 
