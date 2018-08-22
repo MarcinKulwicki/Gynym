@@ -12,7 +12,7 @@
 
     <meta charset="UTF-8">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="/JS/index.js"></script>
+    <script src="/JS/content.js"></script>
     <script src="/JS/login.js"></script>
 </head>
 <body>
